@@ -1,4 +1,4 @@
-<div class="app-dashboard-cards" layout="row" layout-xs="column">
+<div class="category-dashboard-cards" layout="row" layout-xs="column">
 
   <div flex>
     <div style="padding:8px;"
@@ -136,24 +136,16 @@
 
   <div class="dashboard-side" flex-gt-xs="30">
     <md-list>
-      <md-subheader>App actions</md-subheader>
-      <md-list-item ng-click="addSchemaDialog($event)">
+      <md-subheader>Category actions</md-subheader>
+      <md-list-item ng-click="addListDialog($event)">
         <md-icon class="material-icons">add</md-icon>
-        <p>Create new Schema</p>
+        <p>Create new List</p>
       </md-list-item>
-      <md-list-item ng-click="addApiDialog($event)">
-        <md-icon class="material-icons">add</md-icon>
-        <p>Create new API</p>
-      </md-list-item>
-      <md-list-item ng-click="addClientDialog($event)">
-        <md-icon class="material-icons">add</md-icon>
-        <p>Create new Client</p>
-      </md-list-item>
-      <md-divider></md-divider>
+      <!-- <md-divider></md-divider>
       <md-list-item ng-click="null">
         <md-icon class="material-icons">file_download</md-icon>
         <p>Download Project</p>
-      </md-list-item>
+      </md-list-item> -->
     </md-list>
   </div>
 

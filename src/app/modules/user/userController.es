@@ -17,8 +17,8 @@
 angular.module('TaskEvoWebui.User')
   .controller('UserController', UserController);
 
-UserController.$inject = ['$api', '$scope', '$rootScope', '$auth', '$state', '$mdDialog', '$timeout', 'user', 'userApps'];
-function UserController (  $api,   $scope,   $rootScope,   $auth,   $state,   $mdDialog,   $timeout,   user,   userApps) {
+UserController.$inject = ['$api', '$scope', '$rootScope', '$auth', '$state', '$mdDialog', '$timeout', 'user', 'userCategories'];
+function UserController (  $api,   $scope,   $rootScope,   $auth,   $state,   $mdDialog,   $timeout,   user,   userCategories) {
 
   $rootScope.$on('unauthorized', () => {
     $state.go('app.anon.login');
@@ -29,48 +29,48 @@ function UserController (  $api,   $scope,   $rootScope,   $auth,   $state,   $m
   }
 
   $scope.showSidenavApps = true;
-  $scope.apps = userApps;
+  $scope.categories = userCategories;
   $scope.user = user;
 
   $scope.login = user.Login;
 
-  $scope.createApp = function ($event) {
+  $scope.createCategory = function ($event) {
 
     var confirm = $mdDialog.prompt()
-      .title('Name your new app')
-      .placeholder('My App')
-      .ariaLabel('App name')
+      .title('Name your new category')
+      .placeholder('My Category')
+      .ariaLabel('Category name')
       .initialValue('')
       .targetEvent($event)
-      .ok('Create App')
+      .ok('Create Category')
       .cancel('Cancel');
 
     $mdDialog.show(confirm).then(function(result) {
-      createApp(result);
+      createCategory(result);
     }, function() {
 
     });
 
   };
 
-  function createApp (name) {
+  function createCategory (name) {
 
-    let newApp = {
+    let newCategory = {
       Name: name,
     };
 
-    $api.apiPost('/apps', newApp)
+    $api.apiPost('/categories', newCategory)
       .then(function (res) {
         $timeout(function () {
-          Object.assign(newApp, res.data);
-          newApp.Id = res.data.Id;
+          Object.assign(newCategory, res.data);
+          newCategory.Id = res.data.Id;
         });
       })
       .catch(function (err) {
         console.log(err);
       });
 
-    $scope.apps.push(newApp);
+    $scope.categories.push(newCategory);
 
   }
 

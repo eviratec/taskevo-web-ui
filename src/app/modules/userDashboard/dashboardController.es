@@ -17,9 +17,9 @@
 angular.module('TaskEvoWebui.UserDashboard')
   .controller('DashboardController', DashboardController);
 
-DashboardController.$inject = ['$scope', '$mdDialog', 'userApps'];
-function DashboardController (  $scope,   $mdDialog,   userApps) {
+DashboardController.$inject = ['$scope', '$mdDialog', 'userCategories'];
+function DashboardController (  $scope,   $mdDialog,   userCategories) {
 
-  $scope.apps = userApps;
+  $scope.categories = userCategories;
 
 };

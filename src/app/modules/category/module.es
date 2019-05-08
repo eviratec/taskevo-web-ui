@@ -14,7 +14,7 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-angular.module('TaskEvoWebui.AppEditor', [
+angular.module('TaskEvoWebui.Category', [
   'ngAnimate',
   'ngAria',
   'ngCookies',

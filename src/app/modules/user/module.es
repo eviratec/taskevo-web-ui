@@ -22,5 +22,5 @@ angular.module('TaskEvoWebui.User', [
   'ngMessages',
   'ui.router',
   'luminous.environment',
-  'DataStudioWebui.UserDashboard',
+  'TaskEvoWebui.UserDashboard',
 ]);

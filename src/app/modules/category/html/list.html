@@ -1,8 +1,8 @@
-<div class="app-apis"
+<div class="category-lists"
   layout="row"
   layout-xs="column">
 
-  <div class="app-api-cards"
+  <div class="category-list-cards"
     flex>
 
     <div style="border-bottom: 1px solid rgba(0,0,0,0.12);margin:24px 8px 8px;padding:0 8px;height:49px;"
@@ -10,8 +10,8 @@
       layout-align="start center">
       <md-card-header-text>
         <span class="md-headline">
-          <span style="font-weight:300;color:rgba(0,0,0,0.5);">API /</span>
-          {{ $apiCtrl.api.Name }}
+          <span style="font-weight:300;color:rgba(0,0,0,0.5);">List /</span>
+          {{ $listCtrl.api.Name }}
         </span>
       </md-card-header-text>
     </div>
@@ -26,7 +26,7 @@
           <div style="padding: 40px 16px;text-align: center;">
             Add an API Route to make a start
             <md-button class="md-primary"
-              ng-click="$apiCtrl.createRoute($event)">
+              ng-click="$listCtrl.createRoute($event)">
               <md-icon class="material-icons">
                 edit
               </md-icon>
@@ -38,11 +38,11 @@
 
     </div>
 
-    <div ng-if="$apiCtrl.routes.length > 0"
+    <div ng-if="$listCtrl.lists.length > 0"
       flex>
       <div layout="column">
-        <div class="api-route-list">
-          <md-card ng-repeat="route in $apiCtrl.routes">
+        <div class="list-list">
+          <md-card ng-repeat="list in $listCtrl.lists">
             <md-card-content style="padding:0;">
               <div class="api-route">
 

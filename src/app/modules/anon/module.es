@@ -22,5 +22,5 @@ angular.module('TaskEvoWebui.Anon', [
   'ngMessages',
   'ui.router',
   'luminous.environment',
-  'DataStudioWebui.Api',
+  'TaskEvoWebui.Api',
 ]);

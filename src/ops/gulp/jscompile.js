@@ -48,7 +48,7 @@ module.exports = function (gulp) {
 
   gulp.task('tplcachecompile', function () {
     return gulp.src('src/app/**/*/html/**/*.html')
-      .pipe(templateCache('templates.js', { module: 'DataStudioWebui' }))
+      .pipe(templateCache('templates.js', { module: 'TaskEvoWebui' }))
       .pipe(gulp.dest('.tmp'));
   });
 

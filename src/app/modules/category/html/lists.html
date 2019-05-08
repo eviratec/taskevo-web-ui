@@ -1,4 +1,4 @@
-<div class="app-schemas"
+<div class="category-lists"
   layout="row"
   layout-xs="column"
   layout-fill-gt-xs>
@@ -15,7 +15,7 @@
         layout-align="start center">
         <md-card-header-text>
           <span class="md-headline">
-            <span style="font-weight:300;color:rgba(0,0,0,0.5);">Schemas</span>
+            <span style="font-weight:300;color:rgba(0,0,0,0.5);">Items</span>
           </span>
         </md-card-header-text>
       </div>
@@ -34,30 +34,30 @@
           </p>
 
           <md-button class="md-primary md-raised"
-            ng-click="addSchemaDialog($event)">
-            Create Schema
+            ng-click="createList($event)">
+            Create List
           </md-button>
 
         </div>
       </div>
 
       <div layout="row" layout-xs="column" layout-wrap>
-        <div flex-gt-xs="33" ng-repeat="schema in schemas">
+        <div flex-gt-xs="33" ng-repeat="list in list.Lists">
           <md-card>
-            <md-card-header ui-sref="app.user.app.schema({ appId: schema.AppId, schemaId: schema.Id })">
+            <md-card-header ui-sref="app.user.app.api({ appId: api.AppId, apiId: api.Id })">
               <md-card-header-text>
-                <span class="md-title">{{ schema.Name }}</span>
-                <span class="md-subhead">Schema</span>
+                <span class="md-title">{{ api.Name }}</span>
+                <span class="md-subhead">{{ $appEditor.api.Name }} API</span>
               </md-card-header-text>
             </md-card-header>
             <md-divider></md-divider>
             <md-card-actions layout="row" layout-align="end center">
               <md-button class="md-primary"
-                ui-sref="app.user.app.schema({ appId: schema.AppId, schemaId: schema.Id })">
+                ui-sref="app.user.app.api({ appId: api.AppId, apiId: api.Id })">
                 <md-icon class="material-icons">
                   edit
                 </md-icon>
-                Edit Schema
+                Edit API
               </md-button>
             </md-card-actions>
           </md-card>
@@ -65,11 +65,11 @@
         <div flex-gt-xs="33" ng-if="apis.length > 0">
           <div class="create-api-card" layout="column" layout-align="center center">
             <md-button class="md-raised md-primary"
-              ng-click="addSchemaDialog($event)">
+              ng-click="addApiDialog($event)">
               <md-icon class="material-icons">
                 create
               </md-icon>
-              Create Schema
+              Create API
             </md-button>
           </div>
         </div>

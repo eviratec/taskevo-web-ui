@@ -1,0 +1,24 @@
+<div id="category" layout="column" flex>
+
+  <header>
+    <span class="md-headline">
+      <span style="font-weight:300;color:rgba(255,255,255,0.5);">Category /</span>
+      {{ model.Name }}
+    </span>
+  </header>
+
+  <md-nav-bar
+    md-theme="darknav"
+    md-selected-nav-item="currentNavItem"
+    nav-bar-aria-label="navigation links">
+    <md-nav-item md-nav-click="go('dashboard')" name="summary">
+      Summary
+    </md-nav-item>
+    <md-nav-item md-nav-click="go('lists')" name="apis">
+      Lists
+    </md-nav-item>
+  </md-nav-bar>
+
+  <div flex ui-view></div>
+
+</div>

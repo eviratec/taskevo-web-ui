@@ -14,7 +14,7 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-angular.module('TaskEvoWebui.AppEditor')
+angular.module('TaskEvoWebui.Category')
   .controller('AppApiSchemaDialogController', AppApiSchemaDialogController);
 
 AppApiSchemaDialogController.$inject = ['ApiSchema', '$scope', '$mdDialog', 'schema'];
@@ -51,40 +51,4 @@ function AppApiSchemaDialogController (  ApiSchema,   $scope,   $mdDialog,   sch
     $mdDialog.hide();
   };
 
-}
-
-angular.module('TaskEvoWebui.AppEditor')
-  .controller('CreateApiOperationDialogController', CreateApiOperationDialogController);
-
-CreateApiOperationDialogController.$inject = ['$scope', '$timeout', '$mdDialog', 'apiRoute'];
-function CreateApiOperationDialogController (  $scope,   $timeout,   $mdDialog,   apiRoute) {
-  $scope.$data = {
-    Method: 'get',
-    _apiRoute: apiRoute,
-  };
-
-  $scope.apiRoute = apiRoute;
-
-  $scope.$watch('$data.Method', function (newValue, oldValue) {
-    if (oldValue === newValue || !newValue) {
-      return;
-    }
-    let dialogEl = document.getElementById('Dialog_CreateApiOperation');
-    let nameInputEl = dialogEl.querySelector('input[name="name"]');
-    $timeout(function () {
-      nameInputEl.focus();
-    }, 300);
-  });
-
-  $scope.hide = function() {
-    $mdDialog.cancel();
-  };
-
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-
-  $scope.answer = function() {
-    $mdDialog.hide($scope.$data);
-  };
 }

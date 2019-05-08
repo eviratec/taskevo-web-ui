@@ -1,6 +1,136 @@
 /**
- * Data Studio by Eviratec
- * Copyright (c) 2017 - 2019 Callan Peter Milne
+ * Copyright (c) 2019 Callan Peter Milne
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+ * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ * PERFORMANCE OF THIS SOFTWARE.
+ */
+/**
+ * Copyright (c) 2019 Callan Peter Milne
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+ * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ * PERFORMANCE OF THIS SOFTWARE.
+ */
+#signup {
+  background: #37474F; }
+
+#signup div.signup-form.form-wrapper header span.md-headline,
+#signup div.signup-form.form-wrapper header span.md-subhead {
+  line-height: 1; }
+
+#signup div.signup-form.form-wrapper header span.md-headline {
+  font-family: 'Philosopher', sans-serif;
+  font-weight: 700; }
+
+#signup div.signup-form.form-wrapper header span.md-subhead {
+  text-transform: upper-case; }
+
+#signup div.signup-form.form-wrapper {
+  width: 400px;
+  background-color: #fff;
+  border-radius: 2px; }
+
+#signup div.signup-form.form-wrapper header img.app-logo {
+  width: 48px;
+  height: 48px;
+  margin-right: 16px; }
+
+#signup div.signup-form.form-wrapper header {
+  padding: 32px 24px 24px; }
+
+#signup div.signup-form.form-wrapper md-content {
+  background-color: #fff;
+  padding: 24px; }
+
+#signup div.signup-form.form-wrapper md-content .new-user-notice {
+  margin-top: 0;
+  font-style: italic;
+  color: #9C27B0; }
+
+#signup div.signup-form.form-wrapper md-content .new-user-notice p {
+  margin: 0; }
+
+#signup div.signup-form.form-wrapper div.submit-row {
+  padding: 0 24px 24px; }
+
+/**
+ * Copyright (c) 2019 Callan Peter Milne
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+ * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ * PERFORMANCE OF THIS SOFTWARE.
+ */
+#login {
+  background: #37474F; }
+  #login .login-error {
+    text-align: left;
+    margin: 0 24px;
+    color: #F44336; }
+  #login .new-user-banner {
+    background-color: #00838F;
+    color: rgba(255, 255, 255, 0.7);
+    width: 400px;
+    margin-bottom: 24px;
+    padding: 0 0 0 32px; }
+  #login .new-user-banner strong {
+    margin-right: 8px;
+    color: white; }
+  #login div.login-form.form-wrapper header span.md-headline,
+  #login div.login-form.form-wrapper header span.md-subhead {
+    line-height: 1; }
+  #login div.login-form.form-wrapper header span.md-headline {
+    font-family: 'Philosopher', sans-serif;
+    font-weight: 700; }
+  #login div.login-form.form-wrapper header span.md-subhead {
+    text-transform: upper-case; }
+  #login div.login-form.form-wrapper {
+    width: 400px;
+    background-color: #fff;
+    border-radius: 2px; }
+  #login div.login-form.form-wrapper header img.app-logo {
+    width: 48px;
+    height: 48px;
+    margin-right: 16px; }
+  #login div.login-form.form-wrapper header {
+    padding: 32px 24px 24px; }
+  #login div.login-form.form-wrapper md-content {
+    background-color: #fff;
+    padding: 24px; }
+  #login div.login-form.form-wrapper md-content .new-user-notice {
+    background-color: #eee;
+    padding: 24px; }
+  #login div.login-form.form-wrapper md-content .new-user-notice p {
+    margin: 0; }
+  #login div.login-form.form-wrapper div.submit-row {
+    padding: 0 24px 24px; }
+
+/**
+ * Copyright (c) 2019 Callan Peter Milne
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -13812,8 +13942,7 @@ md-content.ds-main-content {
   border-color: rgba(0, 0, 0, 0.12); }
 
 /**
- * Data Studio by Eviratec
- * Copyright (c) 2017 - 2019 Callan Peter Milne
+ * Copyright (c) 2019 Callan Peter Milne
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -13832,142 +13961,7 @@ md-content.ds-main-content {
   color: white; }
 
 /**
- * Data Studio by Eviratec
- * Copyright (c) 2017 - 2019 Callan Peter Milne
- *
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
- * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
- * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
- * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- * PERFORMANCE OF THIS SOFTWARE.
- */
-/**
- * Data Studio by Eviratec
- * Copyright (c) 2017 - 2019 Callan Peter Milne
- *
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
- * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
- * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
- * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- * PERFORMANCE OF THIS SOFTWARE.
- */
-#signup {
-  background: #37474F; }
-
-#signup div.signup-form.form-wrapper header span.md-headline,
-#signup div.signup-form.form-wrapper header span.md-subhead {
-  line-height: 1; }
-
-#signup div.signup-form.form-wrapper header span.md-headline {
-  font-family: 'Philosopher', sans-serif;
-  font-weight: 700; }
-
-#signup div.signup-form.form-wrapper header span.md-subhead {
-  text-transform: upper-case; }
-
-#signup div.signup-form.form-wrapper {
-  width: 400px;
-  background-color: #fff;
-  border-radius: 2px; }
-
-#signup div.signup-form.form-wrapper header img.app-logo {
-  width: 48px;
-  height: 48px;
-  margin-right: 16px; }
-
-#signup div.signup-form.form-wrapper header {
-  padding: 32px 24px 24px; }
-
-#signup div.signup-form.form-wrapper md-content {
-  background-color: #fff;
-  padding: 24px; }
-
-#signup div.signup-form.form-wrapper md-content .new-user-notice {
-  margin-top: 0;
-  font-style: italic;
-  color: #9C27B0; }
-
-#signup div.signup-form.form-wrapper md-content .new-user-notice p {
-  margin: 0; }
-
-#signup div.signup-form.form-wrapper div.submit-row {
-  padding: 0 24px 24px; }
-
-/**
- * Data Studio by Eviratec
- * Copyright (c) 2017 - 2019 Callan Peter Milne
- *
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
- * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
- * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
- * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- * PERFORMANCE OF THIS SOFTWARE.
- */
-#login {
-  background: #37474F; }
-  #login .login-error {
-    text-align: left;
-    margin: 0 24px;
-    color: #F44336; }
-  #login .new-user-banner {
-    background-color: #00838F;
-    color: rgba(255, 255, 255, 0.7);
-    width: 400px;
-    margin-bottom: 24px;
-    padding: 0 0 0 32px; }
-  #login .new-user-banner strong {
-    margin-right: 8px;
-    color: white; }
-  #login div.login-form.form-wrapper header span.md-headline,
-  #login div.login-form.form-wrapper header span.md-subhead {
-    line-height: 1; }
-  #login div.login-form.form-wrapper header span.md-headline {
-    font-family: 'Philosopher', sans-serif;
-    font-weight: 700; }
-  #login div.login-form.form-wrapper header span.md-subhead {
-    text-transform: upper-case; }
-  #login div.login-form.form-wrapper {
-    width: 400px;
-    background-color: #fff;
-    border-radius: 2px; }
-  #login div.login-form.form-wrapper header img.app-logo {
-    width: 48px;
-    height: 48px;
-    margin-right: 16px; }
-  #login div.login-form.form-wrapper header {
-    padding: 32px 24px 24px; }
-  #login div.login-form.form-wrapper md-content {
-    background-color: #fff;
-    padding: 24px; }
-  #login div.login-form.form-wrapper md-content .new-user-notice {
-    background-color: #eee;
-    padding: 24px; }
-  #login div.login-form.form-wrapper md-content .new-user-notice p {
-    margin: 0; }
-  #login div.login-form.form-wrapper div.submit-row {
-    padding: 0 24px 24px; }
-
-/**
- * Data Studio by Eviratec
- * Copyright (c) 2017 - 2019 Callan Peter Milne
+ * Copyright (c) 2019 Callan Peter Milne
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -13984,101 +13978,101 @@ md-content.ds-main-content {
 #Dialog_CreateApiOperation md-toolbar {
   background: #212121; }
 
-#appEditor header {
+#category header {
   padding: 24px;
   background-color: #212121;
   color: white; }
 
-#appEditor header .md-subhead {
+#category header .md-subhead {
   color: rgba(0, 0, 0, 0.38); }
 
-#appEditor ul._md-nav-bar-list {
+#category ul._md-nav-bar-list {
   background-color: #212121; }
 
-#appEditor md-card.app-title-card {
+#category md-card.app-title-card {
   margin: 16px; }
 
-#appEditor .app-dashboard-cards {
+#category .app-dashboard-cards {
   padding: 8px; }
 
-#appEditor .app-dashboard-cards md-card {
+#category .app-dashboard-cards md-card {
   margin: 8px 8px 16px; }
 
-#appEditor .create-api-card {
+#category .create-api-card {
   height: 125px;
   margin: 8px;
   border: 2px dashed;
   border-radius: 3px;
   border-color: rgba(0, 0, 0, 0.12); }
 
-#appEditor .empty-card-filler {
+#category .empty-card-filler {
   margin-top: 64px;
   margin-bottom: 32px; }
-  #appEditor .empty-card-filler span {
+  #category .empty-card-filler span {
     font-weight: 300;
     color: rgba(0, 0, 0, 0.57); }
 
-#appEditor .app-dashboard-cards {
+#category .app-dashboard-cards {
   padding: 8px; }
-  #appEditor .app-dashboard-cards .dashboard-side {
+  #category .app-dashboard-cards .dashboard-side {
     margin: 8px; }
-  #appEditor .app-dashboard-cards md-card md-card-header-text .md-subhead {
+  #category .app-dashboard-cards md-card md-card-header-text .md-subhead {
     font-weight: 300; }
 
-#appEditor .app-api-cards {
+#category .app-api-cards {
   padding: 8px; }
 
-#appEditor .app-schemas {
+#category .app-schemas {
   padding: 8px; }
-  #appEditor .app-schemas .schema-side {
+  #category .app-schemas .schema-side {
     margin: 8px; }
-  #appEditor .app-schemas .schema-properties-container .schema-property {
+  #category .app-schemas .schema-properties-container .schema-property {
     margin: 8px;
     background-color: #fff;
     border-radius: 2px;
     padding: 0 0 0 16px; }
 
-#appEditor .app-apis {
+#category .app-apis {
   padding: 8px; }
-  #appEditor .app-apis .api-side {
+  #category .app-apis .api-side {
     margin: 8px; }
-  #appEditor .app-apis .api-route-list md-card {
+  #category .app-apis .api-route-list md-card {
     margin: 16px 8px;
     background: transparent;
     background: #212121; }
-    #appEditor .app-apis .api-route-list md-card md-card-header-text .md-title {
+    #category .app-apis .api-route-list md-card md-card-header-text .md-title {
       font-weight: 300; }
-    #appEditor .app-apis .api-route-list md-card md-card-content md-divider {
+    #category .app-apis .api-route-list md-card md-card-content md-divider {
       color: rgba(255, 255, 255, 0.12); }
-  #appEditor .app-apis .api-route-list .api-route:nth-of-type(even) {
+  #category .app-apis .api-route-list .api-route:nth-of-type(even) {
     background-color: #FAFAFA; }
-  #appEditor .app-apis .api-route-list .api-route .api-route-header {
+  #category .app-apis .api-route-list .api-route .api-route-header {
     padding: 16px;
     background-color: #242424;
     color: rgba(255, 255, 255, 0.7);
     border-radius: 3px 3px 0 0; }
-    #appEditor .app-apis .api-route-list .api-route .api-route-header span.md-body-1 {
+    #category .app-apis .api-route-list .api-route .api-route-header span.md-body-1 {
       font-family: monospace; }
-  #appEditor .app-apis .api-route-list .api-route .api-route-wrapper {
+  #category .app-apis .api-route-list .api-route .api-route-wrapper {
     padding: 8px;
     background: #424242;
     border-radius: 0 0 3px 3px; }
-  #appEditor .app-apis .api-route-list .api-route .inline-create-btn-wrapper {
+  #category .app-apis .api-route-list .api-route .inline-create-btn-wrapper {
     margin: 8px;
     border: 2px dashed rgba(255, 255, 255, 0.12);
     border-radius: 3px;
     padding: 4px;
     color: white; }
-    #appEditor .app-apis .api-route-list .api-route .inline-create-btn-wrapper md-icon {
+    #category .app-apis .api-route-list .api-route .inline-create-btn-wrapper md-icon {
       color: rgba(255, 255, 255, 0.7); }
-  #appEditor .app-apis .api-route-list .api-route .api-operation {
+  #category .app-apis .api-route-list .api-route .api-operation {
     margin: 8px;
     background-color: #fff;
     border-radius: 2px; }
-    #appEditor .app-apis .api-route-list .api-route .api-operation span.md-body-1 {
+    #category .app-apis .api-route-list .api-route .api-operation span.md-body-1 {
       text-overflow: ellipsis;
       overflow: hidden; }
-    #appEditor .app-apis .api-route-list .api-route .api-operation .http-method {
+    #category .app-apis .api-route-list .api-route .api-operation .http-method {
       line-height: 24px;
       padding: 8px;
       color: white;
@@ -14087,18 +14081,18 @@ md-content.ds-main-content {
       text-align: center;
       text-transform: uppercase;
       border-radius: 2px 0 0 2px; }
-    #appEditor .app-apis .api-route-list .api-route .api-operation .http-post {
+    #category .app-apis .api-route-list .api-route .api-operation .http-post {
       background-color: #558B2F; }
-    #appEditor .app-apis .api-route-list .api-route .api-operation .http-get {
+    #category .app-apis .api-route-list .api-route .api-operation .http-get {
       background-color: #0277BD; }
-    #appEditor .app-apis .api-route-list .api-route .api-operation .http-delete {
+    #category .app-apis .api-route-list .api-route .api-operation .http-delete {
       background-color: #E64A19; }
-    #appEditor .app-apis .api-route-list .api-route .api-operation .http-put {
+    #category .app-apis .api-route-list .api-route .api-operation .http-put {
       background-color: #EF6C00; }
 
-#appEditor .app-clients {
+#category .app-clients {
   padding: 8px; }
-  #appEditor .app-clients .client-side {
+  #category .app-clients .client-side {
     margin: 8px; }
 
 html, body {
