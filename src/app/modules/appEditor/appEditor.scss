@@ -1,0 +1,185 @@
+/**
+ * Copyright (c) 2019 Callan Peter Milne
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+ * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ * PERFORMANCE OF THIS SOFTWARE.
+ */
+
+#Dialog_CreateApiOperation {
+  md-toolbar {
+    background: #212121;
+  }
+}
+#Dialog_ViewApiSchema{
+  .schema-source pre {
+
+  }
+}
+#appEditor {
+
+  header {
+    padding: 24px;
+    background-color: #212121;
+    color: rgba(255,255,255,1);
+  }
+  header .md-subhead {
+    color: rgba(0,0,0,0.38);
+  }
+  ul._md-nav-bar-list {
+    background-color: #212121;
+  }
+  md-card.app-title-card {
+    margin: 16px;
+  }
+  .app-dashboard-cards {
+    padding: 8px;
+  }
+  .app-dashboard-cards md-card {
+    margin: 8px 8px 16px;
+  }
+
+  .create-api-card {
+    height: 125px;
+    margin: 8px;
+    border: 2px dashed;
+    border-radius: 3px;
+    border-color: rgba(0,0,0,0.12);
+  }
+
+  .empty-card-filler {
+    margin-top: 64px;
+    margin-bottom: 32px;
+    span {
+      font-weight: 300;
+      color: rgba(0,0,0,0.57);
+    }
+  }
+
+  .app-dashboard-cards {
+    padding: 8px;
+    .dashboard-side {
+      margin: 8px;
+    }
+    md-card md-card-header-text .md-subhead {
+      font-weight: 300;
+    }
+  }
+  .app-api-cards {
+    padding:8px;
+  }
+
+  .app-schemas {
+    padding: 8px;
+    .schema-side {
+      margin: 8px;
+    }
+    .schema-properties-container {
+      .schema-property {
+        margin: 8px;
+        background-color: #fff;
+        border-radius: 2px;
+        padding: 0 0 0 16px;
+      }
+    }
+  }
+
+  .app-apis {
+    padding: 8px;
+    .api-side {
+      margin: 8px;
+    }
+    .api-route-list {
+      md-card {
+        margin: 16px 8px;
+        background: transparent;
+        background: #212121;
+        md-card-header-text .md-title {
+          font-weight: 300;
+        }
+        md-card-content {
+          md-divider {
+            color: rgba(255,255,255,0.12);
+          }
+        }
+      }
+      .api-route {
+        &:nth-of-type(even) {
+          background-color: #FAFAFA;
+        }
+        .api-route-header {
+          padding: 16px;
+          background-color: #242424;
+          color: rgba(255,255,255,0.7);
+          border-radius: 3px 3px 0 0;
+          span.md-body-1 {
+            font-family: monospace;
+          }
+        }
+        .api-route-wrapper {
+          padding: 8px;
+          background: #424242;
+          border-radius: 0 0 3px 3px;
+        }
+        .inline-create-btn-wrapper {
+          margin: 8px;
+          border: 2px dashed rgba(255,255,255,0.12);
+          border-radius: 3px;
+          padding: 4px;
+          color: rgba(255,255,255,1);
+          md-icon {
+            color: rgba(255,255,255,0.7);
+          }
+        }
+        .api-operation {
+          margin: 8px;
+          background-color: #fff;
+          border-radius: 2px;
+          span.md-body-1 {
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+          .http-method {
+            line-height: 24px;
+            padding: 8px;
+            color: rgba(255,255,255,1);
+            margin: 0 8px 0 0;
+            width: 48px;
+            text-align: center;
+            text-transform: uppercase;
+            border-radius: 2px 0 0 2px;
+          }
+          .http-post {
+            background-color: #558B2F;
+          }
+          .http-get {
+            background-color: #0277BD;
+          }
+          .http-delete {
+            background-color: #E64A19;
+          }
+          .http-put {
+            background-color: #EF6C00;
+          }
+        }
+      }
+    }
+  }
+
+  .app-clients {
+    padding: 8px;
+    .client-side {
+      margin: 8px;
+    }
+  }
+
+
+}
