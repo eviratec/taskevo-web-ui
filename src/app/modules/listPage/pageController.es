@@ -22,7 +22,27 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
 
   const $listPage = this;
 
+  const completedItems = [];
+  const todoItems = [];
+
   $listPage.list = list;
+
+  $listPage.completedItems = completedItems;
+  $listPage.todoItems = todoItems;
+
+  initItemLists();
+
+  function initItemLists () {
+    let allLists = $listPage.list.Lists.slice();
+
+    completedItems.push(...allLists.filter(list => {
+      return 'Completed' in list && list.Completed !== null;
+    }));
+
+    todoItems.push(...allLists.filter(list => {
+      return !( 'Completed' in list ) || list.Completed === null;
+    }));
+  }
 
   $listPage.navToParent = function ($event) {
     let hasParentId = null !== list.ParentId;
@@ -37,12 +57,26 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
   $listPage.toggleComplete = function (list) {
     let isCompleted = null !== list.Completed;
     if (isCompleted) {
-      list.Completed = null;
+      setItemNotComplete(list);
       return;
     }
 
-    list.Completed = Math.floor(Date.now()/1000);
+    setItemComplete(list);
   };
+
+  function setItemNotComplete (item) {
+    let i = completedItems.indexOf(item);
+    item.Completed = null;
+    completedItems.splice(i, 1);
+    todoItems.push(item);
+  }
+
+  function setItemComplete (item) {
+    let i = todoItems.indexOf(item);
+    item.Completed = Math.floor(Date.now()/1000);
+    todoItems.splice(i, 1);
+    completedItems.push(item);
+  }
 
   $listPage.createItem = function ($event) {
 
@@ -68,6 +102,7 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
     let newList = {
       ParentId: list.Id,
       Title: title,
+      Completed: null,
     };
 
     $api.apiPost('/lists', newList)
@@ -81,7 +116,7 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
         console.log(err);
       });
 
-    $listPage.list.Lists.push(newList);
+    todoItems.push(newList);
 
   }
 

@@ -51,11 +51,45 @@
     <!-- List Content -->
     <main>
 
+      <h2>To Do</h2>
+
       <!-- List Items -->
-      <ol class="items">
+      <ol class="items todo">
 
         <!-- List Item -->
-        <li ng-repeat="list in $listPage.list.Lists"
+        <li ng-repeat="list in $listPage.todoItems"
+          ng-class="{'completed': list.Completed !== null}"
+          layout="row">
+
+          <!-- List Item Check Box -->
+          <div class="check-box">
+            <md-button ng-click="$listPage.toggleComplete(list)">
+              <md-icon class="material-icons">
+                {{ null === list.Completed ? 'check_box_outline_blank' : 'check_box' }}
+              </md-icon>
+            </md-button>
+          </div>
+
+          <!-- List Item Text -->
+          <div class="item-text"
+            layout="column"
+            layout-align="center start">
+            <a ui-sref="app.user.listPage({ listId: list.Id })">
+              {{ list.Title }}
+            </a>
+          </div>
+
+        </li>
+
+      </ol>
+
+      <h2>Completed</h2>
+
+      <!-- List Items -->
+      <ol class="items completed">
+
+        <!-- List Item -->
+        <li ng-repeat="list in $listPage.completedItems"
           ng-class="{'completed': list.Completed !== null}"
           layout="row">
 
