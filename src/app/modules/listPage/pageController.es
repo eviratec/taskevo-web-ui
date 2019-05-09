@@ -32,18 +32,6 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
 
   initItemLists();
 
-  function initItemLists () {
-    let allLists = $listPage.list.Lists.slice();
-
-    completedItems.push(...allLists.filter(list => {
-      return 'Completed' in list && list.Completed !== null;
-    }));
-
-    todoItems.push(...allLists.filter(list => {
-      return !( 'Completed' in list ) || list.Completed === null;
-    }));
-  }
-
   $listPage.navToParent = function ($event) {
     let hasParentId = null !== list.ParentId;
     if (hasParentId) {
@@ -64,20 +52,6 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
     setItemComplete(list);
   };
 
-  function setItemNotComplete (item) {
-    let i = completedItems.indexOf(item);
-    item.Completed = null;
-    completedItems.splice(i, 1);
-    todoItems.push(item);
-  }
-
-  function setItemComplete (item) {
-    let i = todoItems.indexOf(item);
-    item.Completed = Math.floor(Date.now()/1000);
-    todoItems.splice(i, 1);
-    completedItems.push(item);
-  }
-
   $listPage.createItem = function ($event) {
 
     var confirm = $mdDialog.prompt()
@@ -96,6 +70,48 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
     });
 
   };
+
+  function initItemLists () {
+    let allLists = $listPage.list.Lists.slice();
+
+    completedItems.push(...allLists.filter(list => {
+      return 'Completed' in list && list.Completed !== null;
+    }));
+
+    todoItems.push(...allLists.filter(list => {
+      return !('Completed' in list) || list.Completed === null;
+    }));
+  }
+
+  function setItemNotComplete (item) {
+    $api.apiPutNewValue(`/list/${item.Id}/completed`, null)
+      .then(function (res) {
+        $timeout(function () {
+          let i = completedItems.indexOf(item);
+          item.Completed = null;
+          completedItems.splice(i, 1);
+          todoItems.push(item);
+        });
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }
+
+  function setItemComplete (item) {
+    $api.apiPutNewValue(`/list/${item.Id}/completed`, 'now')
+      .then(function (res) {
+        $timeout(function () {
+          let i = todoItems.indexOf(item);
+          item.Completed = Math.floor(Date.now()/1000);
+          todoItems.splice(i, 1);
+          completedItems.push(item);
+        });
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  }
 
   function createItem (title) {
 
