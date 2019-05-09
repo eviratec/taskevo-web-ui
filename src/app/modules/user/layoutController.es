@@ -17,8 +17,8 @@
 angular.module('TaskEvoWebui.User')
   .controller('LayoutController', LayoutController);
 
-LayoutController.$inject = ['$scope', '$mdDialog', '$logout', '$mdSidenav'];
-function LayoutController (  $scope,   $mdDialog,   $logout,   $mdSidenav) {
+LayoutController.$inject = ['$scope', '$mdDialog', '$mdToast', '$logout', '$mdSidenav'];
+function LayoutController (  $scope,   $mdDialog,   $mdToast,   $logout,   $mdSidenav) {
 
   let originatorEv;
 
