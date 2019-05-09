@@ -1,5 +1,26 @@
 <div layout="row"
   flex>
-  <h1>Category Page</h1>
-  <p>Category {{ $categoryPage.category.Name }}</p>
+  <div layout="column">
+    <header>
+      <h1>{{ $categoryPage.category.Name }}</h1>
+    </header>
+    <main>
+      <ul>
+        <li ng-repeat="list in $categoryPage.category.Lists">
+          <a ui-sref="app.user.listPage({ listId: list.Id })">
+            {{ list.Title }}
+          </a>
+        </li>
+        <li>
+          <md-button class="md-raised md-primary"
+            ng-click="$categoryPage.createList()">
+            <md-icon class="material-icons">
+              create
+            </md-icon>
+            Create a new list
+          </md-button>
+        </li>
+      </ul>
+    </main>
+  </div>
 </div>

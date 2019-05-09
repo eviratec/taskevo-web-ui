@@ -17,11 +17,52 @@
 angular.module('TaskEvoWebui.CategoryPage')
   .controller('CategoryPageController', CategoryPageController);
 
-CategoryPageController.$inject = ['$scope', '$mdDialog', 'category'];
-function CategoryPageController (  $scope,   $mdDialog,   category) {
+CategoryPageController.$inject = ['$api', '$scope', '$mdDialog', '$timeout', 'category'];
+function CategoryPageController (  $api,   $scope,   $mdDialog,   $timeout,   category) {
 
   const $categoryPage = this;
 
   $categoryPage.category = category;
+
+  $categoryPage.createList = function ($event) {
+
+    var confirm = $mdDialog.prompt()
+      .title('Name your new list')
+      .placeholder('My List')
+      .ariaLabel('List title')
+      .initialValue('')
+      .targetEvent($event)
+      .ok('Create List')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function(result) {
+      createList(result);
+    }, function() {
+
+    });
+
+  };
+
+  function createList (title) {
+
+    let newList = {
+      CategoryId: category.Id,
+      Title: title,
+    };
+
+    $api.apiPost('/lists', newList)
+      .then(function (res) {
+        $timeout(function () {
+          Object.assign(newList, res.data);
+          newList.Id = res.data.Id;
+        });
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+
+    $categoryPage.category.Lists.push(newList);
+
+  }
 
 };
