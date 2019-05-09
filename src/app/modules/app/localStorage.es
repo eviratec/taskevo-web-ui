@@ -15,7 +15,7 @@
  */
 
 angular.module('TaskEvoWebui')
-  .constant('TOKEN_KEY', 'DSWEBUISESS_KEY');
+  .constant('TOKEN_KEY', 'TE7_TOKEN_KEY');
 
 angular.module('TaskEvoWebui')
   .provider('$localStorage', localStorageProvider);

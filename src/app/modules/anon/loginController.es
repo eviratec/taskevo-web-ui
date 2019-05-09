@@ -33,14 +33,14 @@ function LoginController (  $scope,   $auth,   $state,   $mdDialog,   $login,   
 
     console.log($ev);
 
-    let Login = $scope.credentials.Login;
-    let Password = $scope.credentials.Password;
+    let login = $scope.credentials.Login;
+    let password = $scope.credentials.Password;
 
-    $login(Login, Password)
+    $login(login, password)
       .then(function () {
 
       })
-      .catch((err) => {
+      .catch(err => {
         let errorMsg = '';
         if (err.data && err.data.ErrorMsg) {
            errorMsg = err.data.ErrorMsg;

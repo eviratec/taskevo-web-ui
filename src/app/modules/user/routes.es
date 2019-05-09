@@ -25,7 +25,7 @@ angular.module('TaskEvoWebui.User')
         controllerAs: '$user',
         abstract: true,
         resolve: {
-          userApps: ['$api', function ($api) {
+          userCategories: ['$api', function ($api) {
             return $api.apiGet('/categories/all')
               .then(function (res) {
                 return res.data;

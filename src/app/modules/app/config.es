@@ -58,7 +58,10 @@ function appDefaultRoute (  $urlRouterProvider) {
 appThemes.$inject = ['$mdThemingProvider'];
 function appThemes (  $mdThemingProvider) {
 
-  var dsPurpleMap = $mdThemingProvider.extendPalette('purple', {
+  let dsPurpleMap;
+  let sidebarBlueGreyMap;
+
+  dsPurpleMap = $mdThemingProvider.extendPalette('purple', {
     '500': '#8E24AA',
     'contrastDefaultColor': 'light'
   });
@@ -68,7 +71,7 @@ function appThemes (  $mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('dsPurple');
 
-  var sidebarBlueGreyMap = $mdThemingProvider.extendPalette('blue-grey', {
+  sidebarBlueGreyMap = $mdThemingProvider.extendPalette('blue-grey', {
     // 'contrastDefaultColor': 'dark',
   });
 
@@ -87,11 +90,14 @@ function appThemes (  $mdThemingProvider) {
 appInit.$inject = ['$appEnvironment', '$document'];
 function appInit (  $appEnvironment,   $document) {
 
+  let robotoFontSrc;
+  let linkEl;
+
   $document[0].title = $appEnvironment.config.titlePrefix
     + 'TaskEvo Web UI';
 
-  let robotoFontSrc = "https://fonts.googleapis.com/css?family=Roboto:200,300,400,500";
-  let linkEl = $document[0].createElement('link');
+  robotoFontSrc = "https://fonts.googleapis.com/css?family=Roboto:200,300,400,500";
+  linkEl = $document[0].createElement('link');
 
   linkEl.setAttribute("rel", "stylesheet");
   linkEl.setAttribute("href", robotoFontSrc);

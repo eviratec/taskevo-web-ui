@@ -25,13 +25,13 @@ function dsSignupFactory (  $auth,   $api) {
         Email: Email,
         NewPassword: NewPassword,
       })
-      .then((res) => {
+      .then(res => {
         if (202 === res.status) {
           return resolve();
         }
         reject(new Error(res.data.Error || "UNKNOWN_ERROR_408392"));
       })
-      .catch((res) => {
+      .catch(res => {
         if (400 === res.status) {
           return reject(res.data.ErrorMsg)
         }

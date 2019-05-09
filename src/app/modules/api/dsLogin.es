@@ -25,7 +25,7 @@ function dsLoginFactory (  $auth,   $api) {
         Login: Login,
         Password: Password,
       })
-      .then((res) => {
+      .then(res => {
         let token = res.data.Token;
         if (token) {
           $auth.auth(token.Key);

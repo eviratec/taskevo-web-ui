@@ -42,10 +42,10 @@ function SignupController (  $state,   $scope,   $signup,   $timeout,   $mdDialo
 
     showProgressBar();
 
-    let Email = $scope.newUser.EmailAddress;
-    let Password = $scope.newUser.Password;
+    let email = $scope.newUser.EmailAddress;
+    let password = $scope.newUser.Password;
 
-    $signup(Email, Password)
+    $signup(email, password)
       .then(() => {
         let d = $mdDialog.alert()
           .parent(angular.element(document.body))
