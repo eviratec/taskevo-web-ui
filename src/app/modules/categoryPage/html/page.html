@@ -1,26 +1,47 @@
+<!-- Category Page -->
 <div layout="row"
   flex>
   <div layout="column">
+
+    <!-- List Header -->
     <header>
       <h1>{{ $categoryPage.category.Name }}</h1>
     </header>
+
+    <!-- Category Content -->
     <main>
+
+      <!-- Category Lists -->
       <ul>
+
+        <!-- Category List -->
         <li ng-repeat="list in $categoryPage.category.Lists">
           <a ui-sref="app.user.listPage({ listId: list.Id })">
             {{ list.Title }}
           </a>
         </li>
+
+        <!-- Create A New List line -->
         <li>
+
+          <!-- Create A New List Button -->
           <md-button class="md-raised md-primary"
             ng-click="$categoryPage.createList()">
+
+            <!-- Icon -->
             <md-icon class="material-icons">
               create
             </md-icon>
-            Create a new list
+
+            <!-- Text -->
+            <span>Create a new list</span>
+            
           </md-button>
+
         </li>
+
       </ul>
     </main>
+
   </div>
 </div>
