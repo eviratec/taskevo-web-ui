@@ -61,8 +61,8 @@ function appThemes (  $mdThemingProvider) {
   let dsPurpleMap;
   let sidebarBlueGreyMap;
 
-  dsPurpleMap = $mdThemingProvider.extendPalette('purple', {
-    '500': '#8E24AA',
+  dsPurpleMap = $mdThemingProvider.extendPalette('light-blue', {
+    // '800': '#8E24AA',
     'contrastDefaultColor': 'light'
   });
 
