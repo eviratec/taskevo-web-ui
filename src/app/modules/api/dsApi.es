@@ -20,6 +20,7 @@ angular.module('TaskEvoWebui.Api')
 dsApiFactory.$inject = ['$auth', '$appEnvironment', '$http'];
 function dsApiFactory (  $auth,   $appEnvironment,   $http) {
 
+  const PUT = 'put';
   const POST = 'post';
   const GET = 'get';
   const DELETE = 'delete';
@@ -66,6 +67,29 @@ function dsApiFactory (  $auth,   $appEnvironment,   $http) {
         if (d) {
           opts.data = JSON.stringify(d);
         }
+
+        $http(opts).then(resolve, reject);
+      });
+    }
+    apiPutNewValue (url, newValue) {
+      let dsApi = this;
+      return new Promise((resolve, reject) => {
+        let authorization = this.authorization;
+        let opts = {
+          method: PUT,
+          url: dsApi.url + url,
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+        };
+
+        if (hasAuthorization()) {
+          opts.headers['Authorization'] = getAuthorization();
+        }
+
+        opts.data = JSON.stringify({
+          newValue: newValue,
+        });
 
         $http(opts).then(resolve, reject);
       });
