@@ -1,28 +1,40 @@
 <!-- Category Page -->
-<div layout="row"
+<div id="CategoryPage"
+  layout="row"
   flex>
-  <div layout="column">
+  <div layout="column"
+    flex>
 
     <!-- List Header -->
-    <header>
+    <header class="page-header">
       <h1>{{ $categoryPage.category.Name }}</h1>
     </header>
 
     <!-- Category Content -->
     <main>
 
-      <!-- Category Lists -->
-      <ul>
+      <!-- Category Lists Section -->
+      <section class="lists">
 
-        <!-- Category List -->
-        <li ng-repeat="list in $categoryPage.category.Lists">
-          <a ui-sref="app.user.listPage({ listId: list.Id })">
-            {{ list.Title }}
-          </a>
-        </li>
+        <!-- Category Lists -->
+        <ul class="lists">
 
-        <!-- Create A New List line -->
-        <li>
+          <!-- List -->
+          <li ng-repeat="list in $categoryPage.category.Lists">
+            <a ui-sref="app.user.listPage({ listId: list.Id })"
+              layout="row"
+              flex>
+              <md-icon class="material-icons">
+                list_alt
+              </md-icon>
+              <span class="list-title">{{ list.Title }}</span>
+            </a>
+          </li>
+
+        </ul>
+
+        <!-- Section Footer -->
+        <footer>
 
           <!-- Create A New List Button -->
           <md-button class="md-raised md-primary"
@@ -35,12 +47,13 @@
 
             <!-- Text -->
             <span>Create a new list</span>
-            
+
           </md-button>
 
-        </li>
+        </footer>
 
-      </ul>
+      </section>
+
     </main>
 
   </div>
