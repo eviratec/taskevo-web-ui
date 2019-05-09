@@ -70,7 +70,8 @@ module.exports = function (gulp) {
     });
 
     // UI router new path
-    paths.push(`node_modules/@uirouter/angularjs/release/ui-router-angularjs.min.js`);
+    paths.push(`node_modules/@uirouter/angularjs/release/angular-ui-router.js`);
+    // paths.push(`node_modules/@uirouter/angularjs/release/ui-router-angularjs.js`);
 
     gulp.src(paths)
       .pipe(concat('vendor.js', {newLine: ';'}))
