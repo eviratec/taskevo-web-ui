@@ -62,13 +62,15 @@ module.exports = function (gulp) {
       'angular-cookies',
       'angular-material',
       'angular-messages',
-      'angular-ui-router',
       'angular-environment-config',
     ];
 
     deps.forEach(vendorModule => {
       paths.push(`node_modules/${vendorModule}/**/*${vendorModule}.min.js`);
     });
+
+    // UI router new path
+    paths.push(`node_modules/@uirouter/angularjs/release/ui-router-angularjs.min.js`);
 
     gulp.src(paths)
       .pipe(concat('vendor.js', {newLine: ';'}))
