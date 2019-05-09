@@ -17,11 +17,72 @@
 angular.module('TaskEvoWebui.ListPage')
   .controller('ListPageController', ListPageController);
 
-ListPageController.$inject = ['$scope', '$mdDialog', 'list'];
-function ListPageController (  $scope,   $mdDialog,   list) {
+ListPageController.$inject = ['$api', '$scope', '$state', '$mdDialog', '$timeout', 'list'];
+function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout,   list) {
 
   const $listPage = this;
 
   $listPage.list = list;
+
+  $listPage.navToParent = function ($event) {
+    let hasParentId = null !== list.ParentId;
+    if (hasParentId) {
+      $state.go('app.user.listPage', { listId: list.ParentId });
+      return;
+    }
+
+    $state.go('app.user.categoryPage', { categoryId: list.CategoryId });
+  };
+
+  $listPage.toggleComplete = function (list) {
+    let isCompleted = null !== list.Completed;
+    if (isCompleted) {
+      list.Completed = null;
+      return;
+    }
+
+    list.Completed = Math.floor(Date.now()/1000);
+  };
+
+  $listPage.createItem = function ($event) {
+
+    var confirm = $mdDialog.prompt()
+      .title('Name your new item')
+      .placeholder('Do ...')
+      .ariaLabel('Item title')
+      .initialValue('')
+      .targetEvent($event)
+      .ok('Create Item')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function(result) {
+      createItem(result);
+    }, function() {
+
+    });
+
+  };
+
+  function createItem (title) {
+
+    let newList = {
+      ParentId: list.Id,
+      Title: title,
+    };
+
+    $api.apiPost('/lists', newList)
+      .then(function (res) {
+        $timeout(function () {
+          Object.assign(newList, res.data);
+          newList.Id = res.data.Id;
+        });
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+
+    $listPage.list.Lists.push(newList);
+
+  }
 
 };
