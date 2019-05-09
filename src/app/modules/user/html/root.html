@@ -34,7 +34,7 @@
       </md-subheader>
 
       <md-list-item ui-sref-active="active"
-        ui-sref="app.user.category.dashboard({ categoryId: category.Id })"
+        ui-sref="app.user.categoryPage({ categoryId: category.Id })"
         ng-repeat="category in categories"
         ng-if="showSidenavCategories"
         ng-click="toggleSidenav('left')">

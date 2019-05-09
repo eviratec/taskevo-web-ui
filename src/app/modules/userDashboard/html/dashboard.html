@@ -22,7 +22,7 @@
         <div flex-gt-xs="33"
           ng-repeat="category in categories">
           <md-card>
-            <md-card-header ui-sref="app.user.app.dashboard({ appId: category.Id })">
+            <md-card-header ui-sref="app.user.categoryPage({ categoryId: category.Id })">
               <md-card-avatar>
                 <md-icon ng-if="!category.IconUrl"
                   class="material-icons">
@@ -40,11 +40,11 @@
             <md-card-actions layout="row"
               layout-align="end center">
               <md-button class="md-primary"
-                ui-sref="app.user.category.dashboard({ categoryId: category.Id })">
+                ui-sref="app.user.categoryPage({ categoryId: category.Id })">
                 <md-icon class="material-icons">
                   edit
                 </md-icon>
-                Edit Category
+                Manage Lists
               </md-button>
             </md-card-actions>
           </md-card>
