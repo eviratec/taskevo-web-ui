@@ -30,28 +30,28 @@
       <md-divider></md-divider>
 
       <md-subheader ng-click="showSidenavApps=!showSidenavApps">
-        My Apps
+        My Categories
       </md-subheader>
 
       <md-list-item ui-sref-active="active"
-        ui-sref="app.user.app.dashboard({ appId: app.Id })"
-        ng-repeat="app in apps"
-        ng-if="showSidenavApps"
+        ui-sref="app.user.category.dashboard({ categoryId: category.Id })"
+        ng-repeat="category in categories"
+        ng-if="showSidenavCategories"
         ng-click="toggleSidenav('left')">
         <md-icon class="material-icons">
           folder
         </md-icon>
-        <p>{{ app.Name }}</p>
+        <p>{{ category.Name }}</p>
       </md-list-item>
 
       <md-list-item
-        ng-click="createApp()"
-        ng-if="showSidenavApps"
+        ng-click="createCategory()"
+        ng-if="showSidenavCategories"
         ng-click="toggleSidenav('left')">
         <md-icon class="material-icons">
           create
         </md-icon>
-        <p>Create an App</p>
+        <p>Create a Category</p>
       </md-list-item>
 
     </md-list>

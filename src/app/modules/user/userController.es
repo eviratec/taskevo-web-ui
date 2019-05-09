@@ -28,7 +28,7 @@ function UserController (  $api,   $scope,   $rootScope,   $auth,   $state,   $m
     $state.go('app.anon.login');
   }
 
-  $scope.showSidenavApps = true;
+  $scope.showSidenavCategories = true;
   $scope.categories = userCategories;
   $scope.user = user;
 
