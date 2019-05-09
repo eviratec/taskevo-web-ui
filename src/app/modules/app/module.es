@@ -25,4 +25,6 @@ angular.module('TaskEvoWebui', [
   'TaskEvoWebui.Api',
   'TaskEvoWebui.Anon',
   'TaskEvoWebui.User',
+  'TaskEvoWebui.CategoryPage',
+  'TaskEvoWebui.ListPage',
 ]);
