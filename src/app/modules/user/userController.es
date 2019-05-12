@@ -34,6 +34,8 @@ function UserController (  $api,   $scope,   $rootScope,   $auth,   $state,   $m
 
   $scope.login = user.Login;
 
+  $scope.$on(`category:renamed`, updateCategoryName);
+
   $scope.createCategory = function ($event) {
 
     var confirm = $mdDialog.prompt()
@@ -72,6 +74,19 @@ function UserController (  $api,   $scope,   $rootScope,   $auth,   $state,   $m
 
     $scope.categories.push(newCategory);
 
+  }
+
+  function updateCategoryName ($event, categoryId, newValue) {
+    let category = getUserCategoryById(categoryId);
+    $scope.$apply(function () {
+      category.Name = newValue;
+    });
+  }
+
+  function getUserCategoryById (categoryId) {
+    return userCategories.filter(category => {
+      return category.Id === categoryId;
+    })[0];
   }
 
 };

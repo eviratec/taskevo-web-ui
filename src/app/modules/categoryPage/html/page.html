@@ -26,6 +26,13 @@
           <!-- content -->
           <md-menu-content width="4">
             <md-menu-item>
+              <md-button ng-click="$categoryPage.renameCategory($event)">
+                <md-icon>edit</md-icon>
+                Rename Category
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider></md-menu-divider>
+            <md-menu-item>
               <md-button ng-click="$categoryPage.deleteCategory($event)">
                 <md-icon>delete</md-icon>
                 Delete Category

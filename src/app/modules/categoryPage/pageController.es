@@ -71,6 +71,47 @@ function CategoryPageController (  $api,   $scope,   $state,   $mdDialog,   $tim
 
   };
 
+  $categoryPage.renameCategory = function ($event) {
+
+    var confirm = $mdDialog.prompt()
+      .title('Rename Category')
+      .placeholder(category.Name)
+      .ariaLabel('Category name')
+      .initialValue(category.Name)
+      .targetEvent($event)
+      .ok('Save')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function(newValue) {
+      renameCategory(category.Id, newValue);
+    }, function() {
+      // do nothing
+    });
+
+  };
+
+  function renameCategory (categoryId, newValue) {
+    if (category.Id !== categoryId) {
+      return;
+    }
+
+    $api.apiPutNewValue(`/category/${categoryId}/name`, newValue)
+      .then(function (res) {
+        updateCategoryName(newValue);
+        $scope.$emit(`category:renamed`, categoryId, newValue);
+      })
+      .catch(function (err) {
+        console.log(err);
+        notifyRenameCategoryError();
+      });
+  }
+
+  function updateCategoryName (newValue) {
+    $scope.$apply(function () {
+      category.Name = newValue;
+    });
+  }
+
   function deleteCategory (categoryId) {
     if (category.Id !== categoryId) {
       return;
@@ -91,6 +132,16 @@ function CategoryPageController (  $api,   $scope,   $state,   $mdDialog,   $tim
       $mdDialog.alert()
         .title('Error')
         .textContent('An unexpected error was encountered while deleting the category.')
+        .ariaLabel('Error notification')
+        .ok('Ok')
+    );
+  }
+
+  function notifyRenameCategoryError () {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .title('Error')
+        .textContent('An unexpected error was encountered while renaming the category.')
         .ariaLabel('Error notification')
         .ok('Ok')
     );
