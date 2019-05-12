@@ -29,7 +29,6 @@ angular.module('TaskEvoWebui.CategoryPage')
             let categoryId = $stateParams.categoryId;
             return $api.apiGet(`/category/${categoryId}`)
               .then(function (res) {
-                console.log(res.data);
                 return res.data;
               })
               .catch(function (err) {

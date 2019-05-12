@@ -25,7 +25,6 @@ function MustMatchDirective () {
       ctrl.$validators.mustMatch = function(modelValue, viewValue) {
         // Value of other field this one must match
         let matchTargetValue = scope.$eval(attrs.mustMatch);
-        console.log(modelValue, matchTargetValue, modelValue === matchTargetValue);
         if (modelValue === matchTargetValue) {
           // it is valid
           return true;
