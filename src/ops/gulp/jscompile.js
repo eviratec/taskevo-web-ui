@@ -18,6 +18,7 @@ const templateCache = require('gulp-angular-templatecache');
 const sourcemaps = require('gulp-sourcemaps');
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
+const minify = require('gulp-minify');
 
 module.exports = function (gulp) {
 
@@ -70,13 +71,24 @@ module.exports = function (gulp) {
     });
 
     // UI router new path
-    paths.push(`node_modules/@uirouter/angularjs/release/angular-ui-router.js`);
+    paths.push(`node_modules/@uirouter/angularjs/release/angular-ui-router.min.js`);
     // paths.push(`node_modules/@uirouter/angularjs/release/ui-router-angularjs.js`);
 
     gulp.src(paths)
       .pipe(concat('vendor.js', {newLine: ';'}))
       .pipe(gulp.dest('build'));
 
+  });
+
+  gulp.task('jsmin', function () {
+    gulp.src('build/app.js')
+      .pipe(minify({
+        ext: {
+          min: '.min.js',
+        },
+        mangle: true,
+      }))
+      .pipe(gulp.dest('build'));
   });
 
 };

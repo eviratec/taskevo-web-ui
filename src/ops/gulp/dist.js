@@ -25,6 +25,6 @@ module.exports = function (gulp) {
       .pipe(gulp.dest('dist'));
   });
 
-  gulp.task('dist', [ 'build', 'moveBuildToDist' ]);
+  gulp.task('dist', [ 'moveBuildToDist' ]);
 
 };
