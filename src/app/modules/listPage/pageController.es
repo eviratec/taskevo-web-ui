@@ -33,13 +33,7 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
   initItemLists();
 
   $listPage.navToParent = function ($event) {
-    let hasParentId = null !== list.ParentId;
-    if (hasParentId) {
-      $state.go('app.user.listPage', { listId: list.ParentId });
-      return;
-    }
-
-    $state.go('app.user.categoryPage', { categoryId: list.CategoryId });
+    navToParent();
   };
 
   $listPage.toggleComplete = function (list) {
@@ -70,6 +64,60 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
     });
 
   };
+
+  $listPage.deleteList = function ($event) {
+
+    let confirm = $mdDialog.confirm()
+      .title('Are you sure?')
+      .textContent('This will permanently delete your list: ' + list.Title)
+      .ariaLabel('Delete list')
+      .targetEvent($event)
+      .ok('Delete List')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function() {
+      deleteList(list.Id);
+    }, function() {
+      // do nothing
+    });
+
+  };
+
+  function deleteList (listId) {
+    if (list.Id !== listId) {
+      return;
+    }
+
+    $api.apiDelete(`/list/${listId}`)
+      .then(function (res) {
+        navToParent();
+      })
+      .catch(function (err) {
+        console.log(err);
+        notifyDeleteListError();
+      });
+  }
+
+  function notifyDeleteListError () {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .title('Error')
+        .textContent('An unexpected error was encountered while deleting the list.')
+        .ariaLabel('Error notification')
+        .targetEvent($event)
+        .ok('Ok')
+    );
+  }
+
+  function navToParent () {
+    let hasParentId = null !== list.ParentId;
+    if (hasParentId) {
+      $state.go('app.user.listPage', { listId: list.ParentId });
+      return;
+    }
+
+    $state.go('app.user.categoryPage', { categoryId: list.CategoryId });
+  }
 
   function initItemLists () {
     let allLists = $listPage.list.Lists.slice();

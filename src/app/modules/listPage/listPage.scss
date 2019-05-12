@@ -15,24 +15,9 @@
  */
 
 #ListPage {
-
-  header.page-header {
+  
+  md-toolbar.page-header {
     background-color: #222;
-    padding: 0 8px;
-    h1,
-    .md-icon-button.back-button md-icon {
-      color: rgba(255,255,255,0.7);
-    }
-    h1 {
-      font-weight: 400;
-      font-size: 1.6em;
-      line-height: 64px;
-      max-height: 64px;
-      margin: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
   }
   section#NoListItems {
     .create-list {

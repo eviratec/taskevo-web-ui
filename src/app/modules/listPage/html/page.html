@@ -6,50 +6,58 @@
     flex>
 
     <!-- List Header -->
-    <header class="page-header">
-      <div layout="row">
+    <md-toolbar class="page-header">
+      <div class="md-toolbar-tools">
 
-        <!-- Back Button Container -->
-        <div layout="column"
-          layout-align="center center">
-
-          <!-- Back Button -->
-          <md-button class="back-button md-icon-button"
-            ng-click="$listPage.navToParent()">
-            <md-icon class="material-icons">
-              chevron_left
-            </md-icon>
-          </md-button>
-
-        </div>
+        <!-- Back Button -->
+        <md-button class="back-button md-icon-button"
+          ng-click="$listPage.navToParent()">
+          <md-icon class="material-icons">
+            chevron_left
+          </md-icon>
+        </md-button>
 
         <!-- List Title -->
         <h1>{{ $listPage.list.Title }}</h1>
 
         <span flex></span>
 
-        <!-- Add Item Button Container -->
-        <div layout="column"
-          layout-align="center center">
+        <!-- Add Item Button -->
+        <md-button class="md-raised md-primary"
+          ng-click="$listPage.createItem()">
 
-          <!-- Add Item Button -->
-          <md-button class="md-raised md-primary"
-            ng-click="$listPage.createItem()">
+          <!-- Icon -->
+          <md-icon class="material-icons">
+            create
+          </md-icon>
 
-            <!-- Icon -->
+          <!-- Text -->
+          <span>Add Item</span>
+
+        </md-button>
+
+        <md-menu class="list-tools">
+          <!-- trigger -->
+          <md-button class="menu-toggle md-icon-button"
+            aria-label="Open Settings"
+            ng-click="openMenu($mdMenu.open, $event)">
             <md-icon class="material-icons">
-              create
+              settings_cog
             </md-icon>
-
-            <!-- Text -->
-            <span>Add Item</span>
-
           </md-button>
-
-        </div>
+          <!-- content -->
+          <md-menu-content width="4">
+            <md-menu-item>
+              <md-button ng-click="$listPage.deleteList($event)">
+                <md-icon>delete</md-icon>
+                Delete List
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
 
       </div>
-    </header>
+    </md-toolbar>
 
     <!-- List Content -->
     <main layout="column"
