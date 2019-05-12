@@ -77,7 +77,36 @@
 
       <span flex></span>
 
-      <md-menu>
+      <md-menu class="hide-gt-xs">
+        <!-- trigger -->
+        <md-button class="md-icon-button"
+          aria-label="Open Settings"
+          ng-click="openMenu($mdMenu.open, $event)">
+          <md-icon class="material-icons">
+            person
+          </md-icon>
+          <md-icon class="material-icons">
+            arrow_drop_down
+          </md-icon>
+        </md-button>
+        <!-- content -->
+        <md-menu-content width="4">
+          <md-menu-item>
+              <span class="user-displayname">
+                {{ login }}
+              </span>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-button ng-click="logout()">
+              <md-icon>power_settings_new</md-icon>
+              Logout
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+
+      <md-menu class="hide-xs">
         <!-- trigger -->
         <md-button
           aria-label="Open Settings"
@@ -85,8 +114,7 @@
           <md-icon class="material-icons">
             person
           </md-icon>
-          <span class="user-displayname md-caption hide-xs"
-            md-show-gt-xs>
+          <span class="user-displayname md-caption">
             {{ login }}
           </span>
           <md-icon class="material-icons">
