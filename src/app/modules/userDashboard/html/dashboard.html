@@ -20,7 +20,7 @@
         layout-xs="column"
         layout-wrap>
         <div flex-gt-xs="33"
-          ng-repeat="category in categories">
+          ng-repeat="category in categories | orderBy: 'Name'">
           <md-card>
             <md-card-header ui-sref="app.user.categoryPage({ categoryId: category.Id })">
               <md-card-avatar>

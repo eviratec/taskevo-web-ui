@@ -35,7 +35,7 @@
 
       <md-list-item ui-sref-active="active"
         ui-sref="app.user.categoryPage({ categoryId: category.Id })"
-        ng-repeat="category in categories"
+        ng-repeat="category in categories | orderBy: 'Name'"
         ng-if="showSidenavCategories"
         ng-click="toggleSidenav('left')">
         <md-icon class="material-icons">
