@@ -48,6 +48,13 @@
           <!-- content -->
           <md-menu-content width="4">
             <md-menu-item>
+              <md-button ng-click="$listPage.renameList($event)">
+                <md-icon>edit</md-icon>
+                Rename List
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider></md-menu-divider>
+            <md-menu-item>
               <md-button ng-click="$listPage.deleteList($event)">
                 <md-icon>delete</md-icon>
                 Delete List

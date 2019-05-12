@@ -83,6 +83,46 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
 
   };
 
+  $listPage.renameList = function ($event) {
+
+    var confirm = $mdDialog.prompt()
+      .title('Rename List')
+      .placeholder(list.Title)
+      .ariaLabel('List title')
+      .initialValue(list.Title)
+      .targetEvent($event)
+      .ok('Save')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function(newValue) {
+      renameList(list.Id, newValue);
+    }, function() {
+      // do nothing
+    });
+
+  };
+
+  function renameList (listId, newValue) {
+    if (list.Id !== listId) {
+      return;
+    }
+
+    $api.apiPutNewValue(`/list/${listId}/title`, newValue)
+      .then(function (res) {
+        updateListTitle(newValue);
+      })
+      .catch(function (err) {
+        console.log(err);
+        notifyRenameListError();
+      });
+  }
+
+  function updateListTitle (newValue) {
+    $scope.$apply(function () {
+      list.Title = newValue;
+    });
+  }
+
   function deleteList (listId) {
     if (list.Id !== listId) {
       return;
@@ -103,6 +143,16 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
       $mdDialog.alert()
         .title('Error')
         .textContent('An unexpected error was encountered while deleting the list.')
+        .ariaLabel('Error notification')
+        .ok('Ok')
+    );
+  }
+
+  function notifyRenameListError () {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .title('Error')
+        .textContent('An unexpected error was encountered while renaming the list.')
         .ariaLabel('Error notification')
         .ok('Ok')
     );
