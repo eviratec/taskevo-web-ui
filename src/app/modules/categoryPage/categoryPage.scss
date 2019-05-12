@@ -16,20 +16,8 @@
 
 #CategoryPage {
 
-  header.page-header {
+  md-toolbar.page-header {
     background-color: #222;
-    padding: 0 8px;
-    h1 {
-      color: rgba(255,255,255,0.7);
-      font-weight: 400;
-      font-size: 1.6em;
-      line-height: 64px;
-      max-height: 64px;
-      margin: 0 16px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
   }
   section.lists {
 

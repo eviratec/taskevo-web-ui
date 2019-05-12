@@ -17,12 +17,22 @@
 angular.module('TaskEvoWebui.CategoryPage')
   .controller('CategoryPageController', CategoryPageController);
 
-CategoryPageController.$inject = ['$api', '$scope', '$mdDialog', '$timeout', 'category'];
-function CategoryPageController (  $api,   $scope,   $mdDialog,   $timeout,   category) {
+CategoryPageController.$inject = ['$api', '$scope', '$state', '$mdDialog', '$timeout', 'category'];
+function CategoryPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout,   category) {
 
   const $categoryPage = this;
 
   $categoryPage.category = category;
+
+  checkCategoryExists();
+
+  function checkCategoryExists () {
+    if (category) {
+      return;
+    }
+
+    navToUserDashboard();
+  }
 
   $categoryPage.createList = function ($event) {
 
@@ -42,6 +52,53 @@ function CategoryPageController (  $api,   $scope,   $mdDialog,   $timeout,   ca
     });
 
   };
+
+  $categoryPage.deleteCategory = function ($event) {
+
+    let confirm = $mdDialog.confirm()
+      .title('Are you sure?')
+      .textContent(`This will permanently delete your category: ${category.Name}`)
+      .ariaLabel('Delete category')
+      .targetEvent($event)
+      .ok('Delete Category')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function() {
+      deleteCategory(category.Id);
+    }, function() {
+      // do nothing
+    });
+
+  };
+
+  function deleteCategory (categoryId) {
+    if (category.Id !== categoryId) {
+      return;
+    }
+
+    $api.apiDelete(`/category/${categoryId}`)
+      .then(function (res) {
+        navToUserDashboard();
+      })
+      .catch(function (err) {
+        console.log(err);
+        notifyDeleteCategoryError();
+      });
+  }
+
+  function notifyDeleteCategoryError () {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .title('Error')
+        .textContent('An unexpected error was encountered while deleting the category.')
+        .ariaLabel('Error notification')
+        .ok('Ok')
+    );
+  }
+
+  function navToUserDashboard () {
+    $state.go('app.user.dashboard');
+  }
 
   function createList (title) {
 
