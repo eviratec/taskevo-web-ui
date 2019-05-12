@@ -85,7 +85,7 @@
         <ol class="items todo">
 
           <!-- List Item -->
-          <li ng-repeat="list in $listPage.todoItems"
+          <li ng-repeat="list in $listPage.todoItems | orderBy: 'Created'"
             ng-class="{'completed': list.Completed !== null}"
             layout="row">
 
