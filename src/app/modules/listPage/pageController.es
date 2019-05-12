@@ -104,7 +104,6 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
         .title('Error')
         .textContent('An unexpected error was encountered while deleting the list.')
         .ariaLabel('Error notification')
-        .targetEvent($event)
         .ok('Ok')
     );
   }
