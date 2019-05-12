@@ -32,9 +32,26 @@ function SignupController (  $state,   $scope,   $signup,   $timeout,   $mdDialo
     Password: '',
   };
 
+  $scope.passwordConfirmation = '';
+
   enableSignup();
 
-  $scope.onSubmit = function ($ev) {
+  function notifyFormInvalid () {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .title('Error')
+        .textContent('Please complete all form fields correctly')
+        .ariaLabel('Error notification')
+        .ok('Ok')
+    );
+  }
+
+  $scope.submit = function ($ev) {
+
+    if (!$scope.signupForm.$valid) {
+      notifyFormInvalid();
+      return;
+    }
 
     disableSignup();
 

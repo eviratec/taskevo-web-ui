@@ -12,7 +12,7 @@
 
     </header>
 
-    <form name="signupForm" layout="column" ng-submit="onSubmit($event)"
+    <form name="signupForm" layout="column" ng-submit="submit($event)"
       ng-controller="SignupController">
 
       <md-content layout="column">
@@ -41,7 +41,23 @@
             md-auto-hide="true"
             multiple>
             <div ng-message="required">Password is required.</div>
-            <div ng-message="pattern">Password must be at least 7 characters</div>
+            <div ng-message="pattern">Password must be at least 7 characters.</div>
+          </div>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Confirm Password</label>
+          <input name="passwordConfirmation"
+            ng-model="passwordConfirmation"
+            ng-disabled="inputDisabled"
+            type="password"
+            must-match="newUser.Password"
+            required />
+          <div ng-messages="signupForm.passwordConfirmation.$error"
+            md-auto-hide="true"
+            multiple>
+            <div ng-message="required">Please re-enter your password.</div>
+            <div ng-message="mustMatch">Passwords must match.</div>
           </div>
         </md-input-container>
 
