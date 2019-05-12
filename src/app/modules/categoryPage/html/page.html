@@ -20,7 +20,7 @@
         <ul class="lists">
 
           <!-- List -->
-          <li ng-repeat="list in $categoryPage.category.Lists">
+          <li ng-repeat="list in $categoryPage.category.Lists | orderBy: 'Created'">
             <a ui-sref="app.user.listPage({ listId: list.Id })"
               layout="row"
               flex>
