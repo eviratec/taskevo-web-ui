@@ -81,12 +81,20 @@ module.exports = function (gulp) {
   });
 
   gulp.task('jsmin', function () {
+    let firstComment = true;
     gulp.src('build/app.js')
       .pipe(minify({
         ext: {
           min: '.min.js',
         },
         mangle: true,
+        preserveComments: function () {
+          if (!firstComment) {
+            return false;
+          }
+          firstComment = false;
+          return true;
+        },
       }))
       .pipe(gulp.dest('build'));
   });
