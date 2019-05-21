@@ -1133,31 +1133,6 @@ function ListPageController($api, $scope, $state, $mdDialog, $timeout, list) {
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-angular.module('TaskEvoWebui.UserDashboard').controller('DashboardController', DashboardController);
-
-DashboardController.$inject = ['$scope', '$mdDialog', 'userCategories'];
-function DashboardController($scope, $mdDialog, userCategories) {
-
-  $scope.categories = userCategories;
-};
-'use strict';
-
-/**
- * Copyright (c) 2019 Callan Peter Milne
- *
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
- * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
- * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
- * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- * PERFORMANCE OF THIS SOFTWARE.
- */
-
 angular.module('TaskEvoWebui.User').controller('LayoutController', LayoutController);
 
 LayoutController.$inject = ['$scope', '$mdDialog', '$mdToast', '$logout', '$mdSidenav'];
@@ -1316,6 +1291,70 @@ function UserController($api, $scope, $rootScope, $auth, $state, $mdDialog, $tim
     })[0];
   }
 };
+'use strict';
+
+/**
+ * Copyright (c) 2019 Callan Peter Milne
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+ * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ * PERFORMANCE OF THIS SOFTWARE.
+ */
+
+angular.module('TaskEvoWebui.UserDashboard').controller('DashboardController', DashboardController);
+
+DashboardController.$inject = ['$scope', '$mdDialog', 'userCategories'];
+function DashboardController($scope, $mdDialog, userCategories) {
+
+  $scope.categories = userCategories;
+};
+'use strict';
+
+/**
+ * Copyright (c) 2019 Callan Peter Milne
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+ * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ * PERFORMANCE OF THIS SOFTWARE.
+ */
+
+angular.module('TaskEvoWebui.Anon').directive('mustMatch', MustMatchDirective);
+
+MustMatchDirective.$inject = [];
+function MustMatchDirective() {
+  return {
+    require: 'ngModel',
+    link: function link(scope, elm, attrs, ctrl) {
+      ctrl.$validators.mustMatch = function (modelValue, viewValue) {
+        // Value of other field this one must match
+        var matchTargetValue = scope.$eval(attrs.mustMatch);
+        if (modelValue === matchTargetValue) {
+          // it is valid
+          return true;
+        }
+
+        // it is invalid
+        return false;
+      };
+    }
+  };
+}
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1726,50 +1765,11 @@ function UserFactory() {
 }
 'use strict';
 
-/**
- * Copyright (c) 2019 Callan Peter Milne
- *
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
- * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
- * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
- * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- * PERFORMANCE OF THIS SOFTWARE.
- */
-
-angular.module('TaskEvoWebui.Anon').directive('mustMatch', MustMatchDirective);
-
-MustMatchDirective.$inject = [];
-function MustMatchDirective() {
-  return {
-    require: 'ngModel',
-    link: function link(scope, elm, attrs, ctrl) {
-      ctrl.$validators.mustMatch = function (modelValue, viewValue) {
-        // Value of other field this one must match
-        var matchTargetValue = scope.$eval(attrs.mustMatch);
-        if (modelValue === matchTargetValue) {
-          // it is valid
-          return true;
-        }
-
-        // it is invalid
-        return false;
-      };
-    }
-  };
-}
-'use strict';
-
 angular.module('TaskEvoWebui').run(['$templateCache', function ($templateCache) {
-  $templateCache.put('modules/app/html/app.html', '<div ui-view layout layout-fill></div>\n');
   $templateCache.put('modules/anon/html/login.html', '<div id="login" layout="column" layout-fill layout-align="center center">\n  <div class="login-form form-wrapper" layout="column" md-whiteframe="12dp">\n\n    <header layout="row" layout-align="start center">\n\n      <img src="logo.png" class="app-logo" />\n\n      <div flex layout="column">\n        <span class="md-headline">TaskEvo</span>\n        <span class="md-subhead">User Login</span>\n      </div>\n\n    </header>\n\n    <form layout="column"\n      ng-controller="LoginController"\n      ng-submit="onSubmit($event)">\n\n      <div class="login-error"\n        ng-if="error">\n        <strong>Login failed:</strong>\n        {{ error }}\n      </div>\n\n      <md-content layout="column">\n\n        <md-input-container>\n          <label>Username / Email</label>\n          <input ng-model="credentials.Login" required ng-minlength="5" />\n        </md-input-container>\n\n        <md-input-container>\n          <label>Password</label>\n          <input ng-model="credentials.Password" type="password" required ng-minlength="7" />\n        </md-input-container>\n\n      </md-content>\n\n      <div class="submit-row" layout="row" layout-align="end center">\n        <!-- <a class="md-button" href="#">Forgot Password</a> -->\n        <md-button class="md-primary md-raised" type="submit">\n          Login\n        </md-button>\n      </div>\n\n    </form>\n\n  </div>\n  <div class="new-user-banner" layout="row" layout-align="start center" md-whiteframe="12dp">\n    <strong>New, here?</strong>\n    <span>It\'s free to signup</span>\n    <span flex></span>\n    <a class="md-button" ui-sref="app.anon.signup">Sign-up</a>\n  </div>\n</div>\n');
   $templateCache.put('modules/anon/html/root.html', '<div ui-view layout layout-fill></div>\n');
   $templateCache.put('modules/anon/html/signup.html', '<div id="signup" layout layout-fill layout-align="center center">\n  <div class="signup-form form-wrapper" layout="column" md-whiteframe="12dp">\n\n    <header layout="row" layout-align="start center">\n\n      <img src="logo.png" class="app-logo" />\n\n      <div flex layout="column">\n        <span class="md-caption">TaskEvo</span>\n        <span class="md-headline">User Signup</span>\n      </div>\n\n    </header>\n\n    <form name="signupForm" layout="column" ng-submit="submit($event)"\n      ng-controller="SignupController">\n\n      <md-content layout="column">\n\n        <md-input-container>\n          <label>Email Address</label>\n          <input name="emailAddress"\n            ng-model="newUser.EmailAddress"\n            required\n            type="email"\n            ng-disabled="inputDisabled" />\n          <div ng-messages="signupForm.emailAddress.$error">\n            <div ng-message="required">A valid email address is required.</div>\n          </div>\n        </md-input-container>\n\n        <md-input-container>\n          <label>Password</label>\n          <input name="password"\n            ng-model="newUser.Password"\n            required\n            type="password"\n            ng-pattern="/^.{7,}$/"\n            ng-disabled="inputDisabled" />\n          <div ng-messages="signupForm.password.$error"\n            md-auto-hide="true"\n            multiple>\n            <div ng-message="required">Password is required.</div>\n            <div ng-message="pattern">Password must be at least 7 characters.</div>\n          </div>\n        </md-input-container>\n\n        <md-input-container>\n          <label>Confirm Password</label>\n          <input name="passwordConfirmation"\n            ng-model="passwordConfirmation"\n            ng-disabled="inputDisabled"\n            type="password"\n            must-match="newUser.Password"\n            required />\n          <div ng-messages="signupForm.passwordConfirmation.$error"\n            md-auto-hide="true"\n            multiple>\n            <div ng-message="required">Please re-enter your password.</div>\n            <div ng-message="mustMatch">Passwords must match.</div>\n          </div>\n        </md-input-container>\n\n        <div>\n          <md-checkbox\n            ng-model="touAccepted"\n            aria-label="I have read and agree to the Terms of Use and Privacy Policy"\n            ng-true-value="true"\n            ng-false-value="false"\n            class="md-align-top-left" flex>\n            I have read and agree to the\n            <a href ng-click="showLegal($event, \'termsOfUse\')">Terms of Use</a>\n            and\n            <a href ng-click="showLegal($event, \'privacyPolicy\')">Privacy Policy</a>\n          </md-checkbox>\n        </div>\n\n      </md-content>\n\n      <div class="submit-row" layout="row" layout-align="end center">\n        <md-button class="md-primary md-raised" type="submit" ng-disabled="!touAccepted || submitDisabled">\n          Create my account\n        </md-button>\n      </div>\n\n      <md-progress-linear md-mode="indeterminate" ng-if="showProgress"></md-progress-linear>\n\n    </form>\n\n  </div>\n</div>\n');
+  $templateCache.put('modules/app/html/app.html', '<div ui-view layout layout-fill></div>\n');
   $templateCache.put('modules/categoryPage/html/page.html', '<!-- Category Page -->\n<div id="CategoryPage"\n  layout="row"\n  flex>\n  <div layout="column"\n    flex>\n\n    <!-- Category Header -->\n    <md-toolbar class="page-header">\n      <div class="md-toolbar-tools">\n\n        <!-- Category Title -->\n        <h1>{{ $categoryPage.category.Name }}</h1>\n\n        <span flex></span>\n\n        <md-menu class="category-tools">\n          <!-- trigger -->\n          <md-button class="menu-toggle md-icon-button"\n            aria-label="Open Settings"\n            ng-click="openMenu($mdMenu.open, $event)">\n            <md-icon class="material-icons">\n              settings_cog\n            </md-icon>\n          </md-button>\n          <!-- content -->\n          <md-menu-content width="4">\n            <md-menu-item>\n              <md-button ng-click="$categoryPage.renameCategory($event)">\n                <md-icon>edit</md-icon>\n                Rename Category\n              </md-button>\n            </md-menu-item>\n            <md-menu-divider></md-menu-divider>\n            <md-menu-item>\n              <md-button ng-click="$categoryPage.deleteCategory($event)">\n                <md-icon>delete</md-icon>\n                Delete Category\n              </md-button>\n            </md-menu-item>\n          </md-menu-content>\n        </md-menu>\n\n      </div>\n    </md-toolbar>\n\n    <!-- Category Content -->\n    <main>\n\n      <!-- Category Lists Section -->\n      <section class="lists">\n\n        <!-- Category Lists -->\n        <ul class="lists">\n\n          <!-- List -->\n          <li ng-repeat="list in $categoryPage.category.Lists | orderBy: \'Created\'">\n            <a ui-sref="app.user.listPage({ listId: list.Id })"\n              layout="row"\n              flex>\n              <md-icon class="material-icons">\n                list_alt\n              </md-icon>\n              <span class="list-title">{{ list.Title }}</span>\n            </a>\n          </li>\n\n        </ul>\n\n        <!-- Section Footer -->\n        <footer>\n\n          <!-- Create A New List Button -->\n          <md-button class="md-raised md-primary"\n            ng-click="$categoryPage.createList()">\n\n            <!-- Icon -->\n            <md-icon class="material-icons">\n              create\n            </md-icon>\n\n            <!-- Text -->\n            <span>Create a new list</span>\n\n          </md-button>\n\n        </footer>\n\n      </section>\n\n    </main>\n\n  </div>\n</div>\n');
   $templateCache.put('modules/listPage/html/page.html', '<!-- List Page -->\n<div id="ListPage"\n  layout="row"\n  flex>\n  <div layout="column"\n    flex>\n\n    <!-- List Header -->\n    <md-toolbar class="page-header">\n      <div class="md-toolbar-tools">\n\n        <!-- Back Button -->\n        <md-button class="back-button md-icon-button"\n          ng-click="$listPage.navToParent()">\n          <md-icon class="material-icons">\n            chevron_left\n          </md-icon>\n        </md-button>\n\n        <!-- List Title -->\n        <h1>{{ $listPage.list.Title }}</h1>\n\n        <span flex></span>\n\n        <!-- Add Item Button -->\n        <md-button class="md-raised md-primary"\n          ng-click="$listPage.createItem()">\n\n          <!-- Icon -->\n          <md-icon class="material-icons">\n            create\n          </md-icon>\n\n          <!-- Text -->\n          <span>Add Item</span>\n\n        </md-button>\n\n        <md-menu class="list-tools">\n          <!-- trigger -->\n          <md-button class="menu-toggle md-icon-button"\n            aria-label="Open Settings"\n            ng-click="openMenu($mdMenu.open, $event)">\n            <md-icon class="material-icons">\n              settings_cog\n            </md-icon>\n          </md-button>\n          <!-- content -->\n          <md-menu-content width="4">\n            <md-menu-item>\n              <md-button ng-click="$listPage.renameList($event)">\n                <md-icon>edit</md-icon>\n                Rename List\n              </md-button>\n            </md-menu-item>\n            <md-menu-divider></md-menu-divider>\n            <md-menu-item>\n              <md-button ng-click="$listPage.deleteList($event)">\n                <md-icon>delete</md-icon>\n                Delete List\n              </md-button>\n            </md-menu-item>\n          </md-menu-content>\n        </md-menu>\n\n      </div>\n    </md-toolbar>\n\n    <!-- List Content -->\n    <main layout="column"\n      flex>\n\n      <!-- No List Items Yet ... Section -->\n      <section id="NoListItems"\n        ng-if="$listPage.completedItems.length === 0 && $listPage.todoItems.length ===0"\n        layout="column"\n        flex>\n        <div class="create-list"\n          layout="column"\n          layout-align="center center"\n          flex>\n          <span flex></span>\n          <span class="placeholder-text">No items yet ...</span>\n          <md-button class="md-raised md-primary"\n            ng-click="$listPage.createItem()">\n            <md-icon class="material-icons">\n              create\n            </md-icon>\n            Create one\n          </md-button>\n          <span flex></span>\n        </div>\n      </section>\n\n      <!-- List Items Todo Section -->\n      <section class="list"\n        id="TodoItems">\n\n        <!-- List Items -->\n        <ol class="items todo">\n\n          <!-- List Item -->\n          <li ng-repeat="list in $listPage.todoItems | orderBy: \'Created\'"\n            ng-class="{\'completed\': list.Completed !== null}"\n            layout="row">\n\n            <!-- List Item Check Box -->\n            <div class="check-box">\n              <md-button class="md-icon-button"\n                ng-click="$listPage.toggleComplete(list)">\n                <md-icon class="material-icons">\n                  {{ null === list.Completed ? \'check_box_outline_blank\' : \'check_box\' }}\n                </md-icon>\n              </md-button>\n            </div>\n\n            <!-- List Item Text -->\n            <div class="item-text"\n              layout="column"\n              layout-align="center start">\n              <a ui-sref="app.user.listPage({ listId: list.Id })">\n                {{ list.Title }}\n              </a>\n            </div>\n\n          </li>\n\n        </ol>\n\n      </section>\n\n      <!-- List Items Completed Section -->\n      <section class="list"\n        id="CompletedItems"\n        ng-if="$listPage.completedItems.length > 0">\n\n        <!-- Section Header -->\n        <header>\n          <h2>Completed</h2>\n        </header>\n\n        <!-- List Items -->\n        <ol class="items completed">\n\n          <!-- List Item -->\n          <li ng-repeat="list in $listPage.completedItems | orderBy: \'Created\'"\n            ng-class="{\'completed\': list.Completed !== null}"\n            layout="row">\n\n            <!-- List Item Check Box -->\n            <div class="check-box">\n              <md-button class="md-icon-button"\n                ng-click="$listPage.toggleComplete(list)">\n                <md-icon class="material-icons">\n                  {{ null === list.Completed ? \'check_box_outline_blank\' : \'check_box\' }}\n                </md-icon>\n              </md-button>\n            </div>\n\n            <!-- List Item Text -->\n            <div class="item-text"\n              layout="column"\n              layout-align="center start">\n              <a ui-sref="app.user.listPage({ listId: list.Id })">\n                {{ list.Title }}\n              </a>\n            </div>\n\n          </li>\n\n        </ol>\n\n      </section>\n\n    </main>\n\n  </div>\n</div>\n');
   $templateCache.put('modules/user/html/root.html', '<md-sidenav class="md-sidenav-left md-whiteframe-z2"\n  layout="column"\n  md-theme="sidenavTheme"\n  md-component-id="left"\n  md-is-locked-open="$mdMedia(\'gt-md\')">\n\n  <div ng-controller="SidenavController as $sidenav"\n    ng-cloak>\n\n    <header layout="row" layout-align="start center">\n\n      <img src="logo.png" class="app-logo" />\n\n      <div flex layout="column">\n        <span class="md-headline">TaskEvo</span>\n        <span class="md-caption">eviratec.software</span>\n      </div>\n\n    </header>\n\n    <md-list>\n      <md-list-item ui-sref="app.user.dashboard"\n        ng-click="toggleSidenav(\'left\')">\n        <md-icon class="material-icons">\n          apps\n        </md-icon>\n        <p>Dashboard</p>\n      </md-list-item>\n\n      <md-divider></md-divider>\n\n      <md-subheader ng-click="showSidenavApps=!showSidenavApps">\n        My Categories\n      </md-subheader>\n\n      <md-list-item ui-sref-active="active"\n        ui-sref="app.user.categoryPage({ categoryId: category.Id })"\n        ng-repeat="category in categories | orderBy: \'Name\'"\n        ng-if="showSidenavCategories"\n        ng-click="toggleSidenav(\'left\')">\n        <md-icon class="material-icons">\n          folder\n        </md-icon>\n        <p>{{ category.Name }}</p>\n      </md-list-item>\n\n      <md-list-item\n        ng-click="createCategory()"\n        ng-if="showSidenavCategories"\n        ng-click="toggleSidenav(\'left\')">\n        <md-icon class="material-icons">\n          create\n        </md-icon>\n        <p>Create a Category</p>\n      </md-list-item>\n\n    </md-list>\n  </div>\n</md-sidenav>\n\n<div class="relative"\n  layout="column"\n  role="main"\n  ng-controller="LayoutController"\n  layout-fill\n  ng-cloak>\n  <md-toolbar id="userToolbar">\n    <div class="md-toolbar-tools">\n\n      <img class="logo"\n        src="logo.png" />\n\n      <h3 class="md-caption"\n        ng-if="$mdMedia(\'gt-xs\')">\n        TaskEvo\n      </h3>\n\n      <span flex></span>\n\n      <md-menu class="hide-gt-xs">\n        <!-- trigger -->\n        <md-button class="md-icon-button"\n          aria-label="Open Settings"\n          ng-click="openMenu($mdMenu.open, $event)">\n          <md-icon class="material-icons">\n            person\n          </md-icon>\n          <md-icon class="material-icons">\n            arrow_drop_down\n          </md-icon>\n        </md-button>\n        <!-- content -->\n        <md-menu-content width="4">\n          <md-menu-item>\n              <span class="user-displayname">\n                {{ login }}\n              </span>\n          </md-menu-item>\n          <md-menu-divider></md-menu-divider>\n          <md-menu-item>\n            <md-button ng-click="logout()">\n              <md-icon>power_settings_new</md-icon>\n              Logout\n            </md-button>\n          </md-menu-item>\n        </md-menu-content>\n      </md-menu>\n\n      <md-menu class="hide-xs">\n        <!-- trigger -->\n        <md-button\n          aria-label="Open Settings"\n          ng-click="openMenu($mdMenu.open, $event)">\n          <md-icon class="material-icons">\n            person\n          </md-icon>\n          <span class="user-displayname md-caption">\n            {{ login }}\n          </span>\n          <md-icon class="material-icons">\n            arrow_drop_down\n          </md-icon>\n        </md-button>\n        <!-- content -->\n        <md-menu-content width="4">\n          <!-- <md-menu-item>\n            <md-button ng-click="changeProfile($event)">\n              <md-icon>face</md-icon>\n              Profile\n            </md-button>\n          </md-menu-item>\n          <md-menu-item>\n            <md-button ng-click="changePassword()">\n              <md-icon>lock</md-icon>\n              Password\n            </md-button>\n          </md-menu-item>\n          <md-menu-divider></md-menu-divider> -->\n          <md-menu-item>\n            <md-button ng-click="logout()">\n              <md-icon>power_settings_new</md-icon>\n              Logout\n            </md-button>\n          </md-menu-item>\n        </md-menu-content>\n      </md-menu>\n\n      <md-button class="md-icon-button"\n        aria-label="Menu"\n        ng-click="toggleSidenav(\'left\')"\n        hide-gt-md>\n        <md-icon class="material-icons">\n          menu\n        </md-icon>\n      </md-button>\n    </div>\n  </md-toolbar>\n\n  <md-content class="ds-main-content"\n    layout="column"\n    md-scroll-y\n    flex>\n    <div layout="column"\n      layout-fill\n      ui-view>\n    </div>\n  </md-content>\n\n</div>\n');
