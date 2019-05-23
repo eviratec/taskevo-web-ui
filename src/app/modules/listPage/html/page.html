@@ -143,7 +143,7 @@
         <ol class="items completed">
 
           <!-- List Item -->
-          <li ng-repeat="list in $listPage.completedItems | orderBy: 'Created'"
+          <li ng-repeat="list in $listPage.completedItems | orderBy: '-Completed'"
             ng-class="{'completed': list.Completed !== null}"
             layout="row">
 
