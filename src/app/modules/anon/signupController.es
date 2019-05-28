@@ -93,7 +93,7 @@ function SignupController (  $state,   $scope,   $signup,   $timeout,   $mdDialo
         });
 
         $timeout(function () {
-          $scope.error = errorMsg[2];
+          $scope.error = errorMsg;
         });
       });
 

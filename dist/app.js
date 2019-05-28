@@ -670,6 +670,8 @@ function LoginController($scope, $auth, $state, $mdDialog, $login, $timeout) {
 
   $scope.error = '';
 
+  $scope.showProgress = false;
+
   $scope.credentials = {
     Login: '',
     Password: ''
@@ -679,7 +681,7 @@ function LoginController($scope, $auth, $state, $mdDialog, $login, $timeout) {
 
     $ev.preventDefault();
 
-    console.log($ev);
+    showProgressBar();
 
     var login = $scope.credentials.Login;
     var password = $scope.credentials.Password;
@@ -690,13 +692,27 @@ function LoginController($scope, $auth, $state, $mdDialog, $login, $timeout) {
         errorMsg = err.data.ErrorMsg;
       }
 
-      $mdDialog.show($mdDialog.alert().parent(angular.element(document.body)).clickOutsideToClose(true).title('Login failed').textContent(errorMsg).ariaLabel('Login error dialog').ok('Got it!').targetEvent($ev));
+      hideProgressBar();
+
+      if (!errorMsg) {
+        return;
+      }
+
+      $mdDialog.show($mdDialog.alert().parent(angular.element(document.body)).clickOutsideToClose(true).title('Login failed').textContent('Invalid username/password combination').ariaLabel('Login error dialog').ok('Got it!').targetEvent($ev));
 
       $timeout(function () {
-        $scope.error = errorMsg[2];
+        $scope.error = 'Invalid username/password combination';
       });
     });
   };
+
+  function showProgressBar() {
+    $scope.showProgress = true;
+  }
+
+  function hideProgressBar() {
+    $scope.showProgress = false;
+  }
 };
 'use strict';
 
@@ -772,7 +788,7 @@ function SignupController($state, $scope, $signup, $timeout, $mdDialog) {
       });
 
       $timeout(function () {
-        $scope.error = errorMsg[2];
+        $scope.error = errorMsg;
       });
     });
   };
@@ -1133,31 +1149,6 @@ function ListPageController($api, $scope, $state, $mdDialog, $timeout, list) {
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-angular.module('TaskEvoWebui.UserDashboard').controller('DashboardController', DashboardController);
-
-DashboardController.$inject = ['$scope', '$mdDialog', 'userCategories'];
-function DashboardController($scope, $mdDialog, userCategories) {
-
-  $scope.categories = userCategories;
-};
-'use strict';
-
-/**
- * Copyright (c) 2019 Callan Peter Milne
- *
- * Permission to use, copy, modify, and/or distribute this software for any
- * purpose with or without fee is hereby granted, provided that the above
- * copyright notice and this permission notice appear in all copies.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
- * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
- * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
- * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
- * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
- * PERFORMANCE OF THIS SOFTWARE.
- */
-
 angular.module('TaskEvoWebui.User').controller('LayoutController', LayoutController);
 
 LayoutController.$inject = ['$scope', '$mdDialog', '$mdToast', '$logout', '$mdSidenav'];
@@ -1315,6 +1306,31 @@ function UserController($api, $scope, $rootScope, $auth, $state, $mdDialog, $tim
       return category.Id === categoryId;
     })[0];
   }
+};
+'use strict';
+
+/**
+ * Copyright (c) 2019 Callan Peter Milne
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+ * REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+ * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+ * LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+ * OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+ * PERFORMANCE OF THIS SOFTWARE.
+ */
+
+angular.module('TaskEvoWebui.UserDashboard').controller('DashboardController', DashboardController);
+
+DashboardController.$inject = ['$scope', '$mdDialog', 'userCategories'];
+function DashboardController($scope, $mdDialog, userCategories) {
+
+  $scope.categories = userCategories;
 };
 'use strict';
 
@@ -1766,7 +1782,7 @@ function MustMatchDirective() {
 'use strict';
 
 angular.module('TaskEvoWebui').run(['$templateCache', function ($templateCache) {
-  $templateCache.put('modules/anon/html/login.html', '<div id="login" layout="column" layout-fill layout-align="center center">\n  <div class="login-form form-wrapper" layout="column" md-whiteframe="12dp">\n\n    <header layout="row" layout-align="start center">\n\n      <img src="logo.png" class="app-logo" />\n\n      <div flex layout="column">\n        <span class="md-headline">TaskEvo</span>\n        <span class="md-subhead">User Login</span>\n      </div>\n\n    </header>\n\n    <form layout="column"\n      ng-controller="LoginController"\n      ng-submit="onSubmit($event)">\n\n      <div class="login-error"\n        ng-if="error">\n        <strong>Login failed:</strong>\n        {{ error }}\n      </div>\n\n      <md-content layout="column">\n\n        <md-input-container>\n          <label>Username / Email</label>\n          <input ng-model="credentials.Login" required ng-minlength="5" />\n        </md-input-container>\n\n        <md-input-container>\n          <label>Password</label>\n          <input ng-model="credentials.Password" type="password" required ng-minlength="7" />\n        </md-input-container>\n\n      </md-content>\n\n      <div class="submit-row" layout="row" layout-align="end center">\n        <!-- <a class="md-button" href="#">Forgot Password</a> -->\n        <md-button class="md-primary md-raised" type="submit">\n          Login\n        </md-button>\n      </div>\n\n    </form>\n\n  </div>\n  <div class="new-user-banner" layout="row" layout-align="start center" md-whiteframe="12dp">\n    <strong>New, here?</strong>\n    <span>It\'s free to signup</span>\n    <span flex></span>\n    <a class="md-button" ui-sref="app.anon.signup">Sign-up</a>\n  </div>\n</div>\n');
+  $templateCache.put('modules/anon/html/login.html', '<div id="login"\n  layout="column"\n  layout-align="center center"\n  layout-fill>\n  <div class="login-form form-wrapper"\n    layout="column"\n    md-whiteframe="12dp">\n\n    <header layout="row"\n      layout-align="start center">\n\n      <img class="app-logo"\n        src="logo.png" />\n\n      <div flex layout="column">\n        <span class="md-headline">TaskEvo</span>\n        <span class="md-subhead">User Login</span>\n      </div>\n\n    </header>\n\n    <form layout="column"\n      ng-controller="LoginController"\n      ng-submit="onSubmit($event)">\n\n      <div class="login-error"\n        ng-if="error">\n        <strong>Login failed:</strong>\n        {{ error }}\n      </div>\n\n      <md-content layout="column">\n\n        <md-input-container>\n          <label>Username / Email</label>\n          <input ng-model="credentials.Login"\n            ng-minlength="5"\n            required />\n        </md-input-container>\n\n        <md-input-container>\n          <label>Password</label>\n          <input ng-model="credentials.Password"\n            type="password"\n            ng-minlength="7"\n            required />\n        </md-input-container>\n\n      </md-content>\n\n      <div class="submit-row"\n        layout="row"\n        layout-align="end center">\n        <!-- <a class="md-button" href="#">Forgot Password</a> -->\n        <md-button class="md-primary md-raised"\n          type="submit">\n          Login\n        </md-button>\n      </div>\n\n      <md-progress-linear md-mode="indeterminate"\n        ng-if="showProgress"></md-progress-linear>\n\n    </form>\n\n  </div>\n  <div class="new-user-banner"\n    layout="row"\n    layout-align="start center"\n    md-whiteframe="12dp">\n    <strong>New, here?</strong>\n    <span>It\'s free to signup</span>\n\n    <span flex></span>\n\n    <a class="md-button"\n      ui-sref="app.anon.signup">\n      Sign-up\n    </a>\n  </div>\n</div>\n');
   $templateCache.put('modules/anon/html/root.html', '<div ui-view layout layout-fill></div>\n');
   $templateCache.put('modules/anon/html/signup.html', '<div id="signup" layout layout-fill layout-align="center center">\n  <div class="signup-form form-wrapper" layout="column" md-whiteframe="12dp">\n\n    <header layout="row" layout-align="start center">\n\n      <img src="logo.png" class="app-logo" />\n\n      <div flex layout="column">\n        <span class="md-caption">TaskEvo</span>\n        <span class="md-headline">User Signup</span>\n      </div>\n\n    </header>\n\n    <form name="signupForm" layout="column" ng-submit="submit($event)"\n      ng-controller="SignupController">\n\n      <md-content layout="column">\n\n        <md-input-container>\n          <label>Email Address</label>\n          <input name="emailAddress"\n            ng-model="newUser.EmailAddress"\n            required\n            type="email"\n            ng-disabled="inputDisabled" />\n          <div ng-messages="signupForm.emailAddress.$error">\n            <div ng-message="required">A valid email address is required.</div>\n          </div>\n        </md-input-container>\n\n        <md-input-container>\n          <label>Password</label>\n          <input name="password"\n            ng-model="newUser.Password"\n            required\n            type="password"\n            ng-pattern="/^.{7,}$/"\n            ng-disabled="inputDisabled" />\n          <div ng-messages="signupForm.password.$error"\n            md-auto-hide="true"\n            multiple>\n            <div ng-message="required">Password is required.</div>\n            <div ng-message="pattern">Password must be at least 7 characters.</div>\n          </div>\n        </md-input-container>\n\n        <md-input-container>\n          <label>Confirm Password</label>\n          <input name="passwordConfirmation"\n            ng-model="passwordConfirmation"\n            ng-disabled="inputDisabled"\n            type="password"\n            must-match="newUser.Password"\n            required />\n          <div ng-messages="signupForm.passwordConfirmation.$error"\n            md-auto-hide="true"\n            multiple>\n            <div ng-message="required">Please re-enter your password.</div>\n            <div ng-message="mustMatch">Passwords must match.</div>\n          </div>\n        </md-input-container>\n\n        <div>\n          <md-checkbox\n            ng-model="touAccepted"\n            aria-label="I have read and agree to the Terms of Use and Privacy Policy"\n            ng-true-value="true"\n            ng-false-value="false"\n            class="md-align-top-left" flex>\n            I have read and agree to the\n            <a href ng-click="showLegal($event, \'termsOfUse\')">Terms of Use</a>\n            and\n            <a href ng-click="showLegal($event, \'privacyPolicy\')">Privacy Policy</a>\n          </md-checkbox>\n        </div>\n\n      </md-content>\n\n      <div class="submit-row" layout="row" layout-align="end center">\n        <md-button class="md-primary md-raised" type="submit" ng-disabled="!touAccepted || submitDisabled">\n          Create my account\n        </md-button>\n      </div>\n\n      <md-progress-linear md-mode="indeterminate" ng-if="showProgress"></md-progress-linear>\n\n    </form>\n\n  </div>\n</div>\n');
   $templateCache.put('modules/app/html/app.html', '<div ui-view layout layout-fill></div>\n');
