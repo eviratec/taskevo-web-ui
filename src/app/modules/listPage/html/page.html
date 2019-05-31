@@ -119,7 +119,13 @@
               layout="column"
               layout-align="center start">
               <a ui-sref="app.user.listPage({ listId: list.Id })">
-                {{ list.Title }}
+                <span class="label">{{ list.Title }}</span>
+                <span class="due-date"
+                  ng-if="list.Due">
+                  Due
+                  {{ list.Due*1000 | date:'d MMM' }} at
+                  {{ list.Due*1000 | date:'h:mm a' }}
+                </span>
               </a>
             </div>
 
@@ -162,7 +168,13 @@
               layout="column"
               layout-align="center start">
               <a ui-sref="app.user.listPage({ listId: list.Id })">
-                {{ list.Title }}
+                <span class="label">{{ list.Title }}</span>
+                <span class="due-date"
+                  ng-if="list.Due">
+                  Due
+                  {{ list.Due*1000 | date:'d MMM' }} at
+                  {{ list.Due*1000 | date:'h:mm a' }}
+                </span>
               </a>
             </div>
 

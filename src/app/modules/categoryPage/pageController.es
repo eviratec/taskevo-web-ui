@@ -17,8 +17,8 @@
 angular.module('TaskEvoWebui.CategoryPage')
   .controller('CategoryPageController', CategoryPageController);
 
-CategoryPageController.$inject = ['$api', '$scope', '$state', '$mdDialog', '$timeout', 'category'];
-function CategoryPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout,   category) {
+CategoryPageController.$inject = ['$api', '$scope', '$state', '$mdDialog', '$timeout', '$listCreateDialog', 'category'];
+function CategoryPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout,   $listCreateDialog,   category) {
 
   const $categoryPage = this;
 
@@ -35,22 +35,11 @@ function CategoryPageController (  $api,   $scope,   $state,   $mdDialog,   $tim
   }
 
   $categoryPage.createList = function ($event) {
-
-    var confirm = $mdDialog.prompt()
-      .title('Name your new list')
-      .placeholder('My List')
-      .ariaLabel('List title')
-      .initialValue('')
-      .targetEvent($event)
-      .ok('Create List')
-      .cancel('Cancel');
-
-    $mdDialog.show(confirm).then(function(result) {
-      createList(result);
+    $listCreateDialog.show({}, 'List', $event).then(function(data) {
+      createList(data);
     }, function() {
 
     });
-
   };
 
   $categoryPage.deleteCategory = function ($event) {
@@ -151,11 +140,12 @@ function CategoryPageController (  $api,   $scope,   $state,   $mdDialog,   $tim
     $state.go('app.user.dashboard');
   }
 
-  function createList (title) {
+  function createList (data) {
 
     let newList = {
       CategoryId: category.Id,
-      Title: title,
+      Title: data.Title,
+      Due: data.Due,
     };
 
     $api.apiPost('/lists', newList)

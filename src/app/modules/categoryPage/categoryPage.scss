@@ -40,6 +40,11 @@
           padding: 0 24px;
           color: rgba(0,0,0,0.87);
           text-decoration: none;
+          span.due-date {
+            font-size: 0.8em;
+            margin-left: 16px;
+            color: rgba(0,0,0,0.37);
+          }
           md-icon {
             margin-right: 24px;
           }

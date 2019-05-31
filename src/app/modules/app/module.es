@@ -27,4 +27,5 @@ angular.module('TaskEvoWebui', [
   'TaskEvoWebui.User',
   'TaskEvoWebui.CategoryPage',
   'TaskEvoWebui.ListPage',
+  'TaskEvoWebui.ListCreateDialog',
 ]);

@@ -62,6 +62,12 @@
                 list_alt
               </md-icon>
               <span class="list-title">{{ list.Title }}</span>
+              <span class="due-date"
+                ng-if="list.Due">
+                Due
+                {{ list.Due*1000 | date:'d MMM' }} at
+                {{ list.Due*1000 | date:'h:mm a' }}
+              </span>
             </a>
           </li>
 

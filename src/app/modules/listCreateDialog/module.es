@@ -14,7 +14,7 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-angular.module('TaskEvoWebui.ListPage', [
+angular.module('TaskEvoWebui.ListCreateDialog', [
   'ngAnimate',
   'ngAria',
   'ngCookies',
@@ -22,5 +22,4 @@ angular.module('TaskEvoWebui.ListPage', [
   'ngMessages',
   'ui.router',
   'luminous.environment',
-  'TaskEvoWebui.ListCreateDialog',
 ]);

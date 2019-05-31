@@ -17,8 +17,8 @@
 angular.module('TaskEvoWebui.ListPage')
   .controller('ListPageController', ListPageController);
 
-ListPageController.$inject = ['$api', '$scope', '$state', '$mdDialog', '$timeout', 'list'];
-function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout,   list) {
+ListPageController.$inject = ['$api', '$scope', '$state', '$mdDialog', '$timeout', '$listCreateDialog', 'list'];
+function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout,   $listCreateDialog,   list) {
 
   const $listPage = this;
 
@@ -47,22 +47,11 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
   };
 
   $listPage.createItem = function ($event) {
-
-    var confirm = $mdDialog.prompt()
-      .title('Name your new item')
-      .placeholder('Do ...')
-      .ariaLabel('Item title')
-      .initialValue('')
-      .targetEvent($event)
-      .ok('Create Item')
-      .cancel('Cancel');
-
-    $mdDialog.show(confirm).then(function(result) {
-      createItem(result);
+    $listCreateDialog.show({}, 'Item', $event).then(function(data) {
+      createItem(data);
     }, function() {
 
     });
-
   };
 
   $listPage.deleteList = function ($event) {
@@ -210,11 +199,12 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
       });
   }
 
-  function createItem (title) {
+  function createItem (data) {
 
     let newList = {
       ParentId: list.Id,
-      Title: title,
+      Title: data.Title,
+      Due: data.Due,
       Completed: null,
     };
 

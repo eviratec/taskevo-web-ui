@@ -14,13 +14,29 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-angular.module('TaskEvoWebui.ListPage', [
-  'ngAnimate',
-  'ngAria',
-  'ngCookies',
-  'ngMaterial',
-  'ngMessages',
-  'ui.router',
-  'luminous.environment',
-  'TaskEvoWebui.ListCreateDialog',
-]);
+angular.module('TaskEvoWebui.ListCreateDialog')
+  .factory('$listCreateDialog', $listCreateDialog);
+
+$listCreateDialog.$inject = ['$mdDialog'];
+function $listCreateDialog (  $mdDialog) {
+  return {
+    show: show,
+  };
+
+  function show (list, typeOfList, $event) {
+    let createListDialog = {
+      controller: 'CreateListDialogController',
+      templateUrl: 'modules/listCreateDialog/html/createList.html',
+      parent: angular.element(document.body),
+      targetEvent: $event,
+      clickOutsideToClose: true,
+      fullscreen: true,
+      locals: {
+        list: list,
+        typeOfList: typeOfList,
+      },
+    };
+
+    return $mdDialog.show(createListDialog);
+  }
+}

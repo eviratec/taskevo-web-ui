@@ -22,4 +22,5 @@ angular.module('TaskEvoWebui.CategoryPage', [
   'ngMessages',
   'ui.router',
   'luminous.environment',
+  'TaskEvoWebui.ListCreateDialog',
 ]);
