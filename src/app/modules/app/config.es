@@ -94,7 +94,7 @@ function appInit (  $appEnvironment,   $document) {
   let linkEl;
 
   $document[0].title = $appEnvironment.config.titlePrefix
-    + 'TaskEvo Web UI';
+    + 'TaskEvo';
 
   robotoFontSrc = "https://fonts.googleapis.com/css?family=Roboto:200,300,400,500";
   linkEl = $document[0].createElement('link');
