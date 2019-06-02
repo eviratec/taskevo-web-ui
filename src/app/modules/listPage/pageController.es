@@ -54,6 +54,42 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
     });
   };
 
+  $listPage.changeDue = function ($event) {
+    let changeListDueDialog = {
+      controller: 'ChangeListDueDialogController',
+      templateUrl: 'modules/listPage/html/dialogs/changeDue.html',
+      parent: angular.element(document.body),
+      targetEvent: $event,
+      clickOutsideToClose: true,
+      fullscreen: true,
+      locals: {
+        list: list,
+      },
+    };
+
+    $mdDialog.show(changeListDueDialog).then(function(newValue) {
+      changeDue(list.Id, newValue/1000);
+    }, function() {
+
+    });
+  };
+
+  $listPage.clearDue = function ($event) {
+    let confirm = $mdDialog.confirm()
+      .title('Are you sure?')
+      .textContent('This will remove the due date for: ' + list.Title)
+      .ariaLabel('Remove due date')
+      .targetEvent($event)
+      .ok('Remove Due Date')
+      .cancel('Cancel');
+
+    $mdDialog.show(confirm).then(function() {
+      clearDue(list.Id);
+    }, function() {
+      // do nothing
+    });
+  };
+
   $listPage.deleteList = function ($event) {
 
     let confirm = $mdDialog.confirm()
@@ -102,7 +138,7 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
       })
       .catch(function (err) {
         console.log(err);
-        notifyRenameListError();
+        notifyUpdateListError();
       });
   }
 
@@ -132,16 +168,6 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
       $mdDialog.alert()
         .title('Error')
         .textContent('An unexpected error was encountered while deleting the list.')
-        .ariaLabel('Error notification')
-        .ok('Ok')
-    );
-  }
-
-  function notifyRenameListError () {
-    $mdDialog.show(
-      $mdDialog.alert()
-        .title('Error')
-        .textContent('An unexpected error was encountered while renaming the list.')
         .ariaLabel('Error notification')
         .ok('Ok')
     );
@@ -221,6 +247,54 @@ function ListPageController (  $api,   $scope,   $state,   $mdDialog,   $timeout
 
     todoItems.push(newList);
 
+  }
+
+  function changeDue (listId, newValue) {
+    if (list.Id !== listId) {
+      return;
+    }
+
+    $api.apiPutNewValue(`/list/${listId}/due`, newValue)
+      .then(function (res) {
+        updateListDue(newValue);
+      })
+      .catch(function (err) {
+        console.log(err);
+        notifyUpdateListError();
+      });
+  }
+
+  function clearDue (listId) {
+    if (list.Id !== listId) {
+      return;
+    }
+
+    $api.apiPutNewValue(`/list/${listId}/due`, null)
+      .then(function (res) {
+        updateListDue(null);
+      })
+      .catch(function (err) {
+        console.log(err);
+        notifyUpdateListError();
+      });
+  }
+
+  function updateListDue (newValue) {
+    $scope.$apply(function () {
+      list.Due = newValue;
+    });
+  }
+
+  function notifyUpdateListError () {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .title('Error')
+        .textContent(
+          'An unexpected error was encountered while updating the list.'
+        )
+        .ariaLabel('Error notification')
+        .ok('Ok')
+    );
   }
 
 };

@@ -53,6 +53,19 @@
                 Rename List
               </md-button>
             </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="$listPage.changeDue($event)">
+                <md-icon>edit</md-icon>
+                Change Due Date
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider></md-menu-divider>
+            <md-menu-item>
+              <md-button ng-click="$listPage.clearDue($event)">
+                <md-icon>clear</md-icon>
+                Remove Due Date
+              </md-button>
+            </md-menu-item>
             <md-menu-divider></md-menu-divider>
             <md-menu-item>
               <md-button ng-click="$listPage.deleteList($event)">
