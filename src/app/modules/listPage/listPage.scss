@@ -25,7 +25,7 @@
       span.placeholder-text {
         font-size: 1.4em;
         margin: 16px 0;
-        color: rgba(0,0,0,0.37);
+        color: rgba(255,255,255, 0.5);
       }
     }
   }
@@ -43,15 +43,15 @@
     }
     ol.items {
 
-      border-top: 1px solid rgba(0,0,0,0.12);
+      border-top: 1px solid rgba(255,255,255,0.12);
       list-style-type: none;
       margin: 0;
       padding: 0;
+      background-color: rgb(66,66,66);
 
       li {
 
-        background-color: rgba(255,255,255,0.5);
-        border-bottom: 1px solid rgba(0,0,0,0.12);
+        border-bottom: 1px solid rgba(255,255,255,0.12);
 
         div.check-box {
           button.md-button {
@@ -68,7 +68,7 @@
         div.item-text {
           padding: 8px 16px 8px 0;
           a {
-            color: rgba(0,0,0,0.87);
+            color: rgba(255,255,255,1);
             text-decoration: none;
             span.label {
               text-decoration: underline;
@@ -76,7 +76,7 @@
             span.due-date {
               font-size: 0.8em;
               margin-left: 16px;
-              color: rgba(0,0,0,0.37);
+              color: rgba(255,255,255,0.5);
             }
           }
         }
