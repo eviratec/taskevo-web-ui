@@ -73,11 +73,17 @@ function dsApiFactory (  $auth,   $appEnvironment,   $http) {
 
         emitRequestStart(dsApi);
 
-        $http(opts).then(onComplete, reject);
+        $http(opts).then(onComplete, wait1SecondAndRetry);
 
         function onComplete () {
           emitRequestEnd(dsApi);
           resolve(...arguments);
+        }
+
+        function wait1SecondAndRetry () {
+          setTimeout(function () {
+            dsApi.apiGet(url).then(onComplete);
+          }, 1000);
         }
       });
     }
@@ -103,11 +109,17 @@ function dsApiFactory (  $auth,   $appEnvironment,   $http) {
 
         emitRequestStart(dsApi);
 
-        $http(opts).then(onComplete, reject);
+        $http(opts).then(onComplete, wait1SecondAndRetry);
 
         function onComplete () {
           emitRequestEnd(dsApi);
           resolve(...arguments);
+        }
+
+        function wait1SecondAndRetry () {
+          setTimeout(function () {
+            dsApi.apiPost(url, d).then(onComplete);
+          }, 1000);
         }
       });
     }
@@ -133,11 +145,17 @@ function dsApiFactory (  $auth,   $appEnvironment,   $http) {
 
         emitRequestStart(dsApi);
 
-        $http(opts).then(onComplete, reject);
+        $http(opts).then(onComplete, wait1SecondAndRetry);
 
         function onComplete () {
           emitRequestEnd(dsApi);
           resolve(...arguments);
+        }
+
+        function wait1SecondAndRetry () {
+          setTimeout(function () {
+            dsApi.apiPutNewValue(url, newValue).then(onComplete);
+          }, 1000);
         }
       });
     }
@@ -159,11 +177,17 @@ function dsApiFactory (  $auth,   $appEnvironment,   $http) {
 
         emitRequestStart(dsApi);
 
-        $http(opts).then(onComplete, reject);
+        $http(opts).then(onComplete, wait1SecondAndRetry);
 
         function onComplete () {
           emitRequestEnd(dsApi);
           resolve(...arguments);
+        }
+
+        function wait1SecondAndRetry () {
+          setTimeout(function () {
+            dsApi.apiDelete(url).then(onComplete);
+          }, 1000);
         }
       });
     }
